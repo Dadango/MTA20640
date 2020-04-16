@@ -1391,6 +1391,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   leeway: 0.05
+  hoveredSlot: {fileID: 0}
 --- !u!212 &997093090
 SpriteRenderer:
   m_ObjectHideFlags: 0
