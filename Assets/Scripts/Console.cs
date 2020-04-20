@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BlockSlut {
     private Transform transform;
-    private GameObject method;
+    private GameObject block;
 
     public BlockSlut(Transform _transform)
     {
@@ -15,17 +15,17 @@ public class BlockSlut {
     public Transform getTrans() {
         return transform;
     }
-    public void setMethod(GameObject _method) {
-        method = _method;
+    public void setBlock(GameObject _method) {
+        block = _method;
     }
-    public GameObject getMethod() {
-        return method;
+    public GameObject getBlock() {
+        return block;
     }
 }
 
 public class Console : MonoBehaviour
 {
-    List<Transform> blockSloths = new List<Transform>(); //honestly surprised this doesn't say sluts instead of slots
+    List<BlockSlut> blockSloths = new List<BlockSlut>(); //honestly surprised this doesn't say sluts instead of slots
     public GameObject slotPrefab;
     public bool runButtonPH;
     public GameObject temp;
@@ -41,7 +41,7 @@ public class Console : MonoBehaviour
         {
             Transform blockSlot = child.GetComponent<Transform>();
 
-            if (blockSlot != null) blockSloths.Add(blockSlot);  
+            if (blockSlot != null) blockSloths.Add(new BlockSlut(blockSlot));
         }
         //blockSlots[0].GetComponent<SpriteRenderer>().color = Color.red;
         //blockSlots[0].transform.localPosition -= new Vector3(0,50);
@@ -51,21 +51,24 @@ public class Console : MonoBehaviour
     {
         if (runButtonPH) {
             runButtonPH = false;
-            RunConsole();
+            StartCoroutine("RunConsole");
+            //TO DO: disable everything else?
         }
     }
+
     void OnBlockRecieved(GameObject block) //change to a superclass that ever block must inherit from? or interface that every block must subscribe to? or maybe just have a scriptable object or all the functions in "console" and make this a call to a specific reference... probably a dict with the function names
     {
         block.transform.SetParent(transform);
         for (int i = blockSloths.Count - 1; i >= 0; i--) { //go through list backwards to skip unessesary iterations
-            Transform blockSlot = blockSloths[i];
-            if (blockSlot.transform.localPosition == block.transform.localPosition) {
+            blockSloths[i].setBlock(block);
+            BlockSlut blockSlot = blockSloths[i];
+            if (blockSlot.getTrans().localPosition == block.transform.localPosition) {
                 print("fucking");
                 if (i == blockSloths.Count - 1) {
                     GameObject slotClone = Instantiate(slotPrefab, new Vector2(0, 0), Quaternion.identity);
                     slotClone.transform.SetParent(transform);
                     slotClone.transform.localPosition = new Vector2(0, (block.transform.localPosition.y - 1.5f));
-                    blockSloths.Add(slotClone.transform);
+                    blockSloths.Add(new BlockSlut(slotClone.transform));
                     print("mouthbreather");
                 }
                 break;
@@ -75,16 +78,17 @@ public class Console : MonoBehaviour
 
     }
 
-    void RunConsole() //TODO - this
+    IEnumerator RunConsole() //TODO - this
     {
-        foreach (Transform child in transform)
-        {
-            if (child.GetComponent<DragNDrop>()) { } //if it can be dragged, it is most likely a method. Consider changing to use tags instead later
+        print("Attempting your code");
+        for (int i = 0; i < blockSloths.Count; i++) {
+            print(i);
+            BlockSlut blockSlot = blockSloths[i];
+            if (blockSlot.getBlock() != null)
+            {
+                var blockScript = blockSlot.getBlock().GetComponent<DragNDrop>();
+            }
         }
-        string tempName = temp.GetComponent<DragNDrop>().methodName.text;
-        print(tempName);
-        string tempVar = temp.GetComponent<DragNDrop>().methodVar.text;
-        if (tempVar == "") tempVar= "1";
-        print(tempVar);
+        yield break; //something else probably
     }
 }
