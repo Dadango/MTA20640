@@ -2095,8 +2095,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.05, y: 0.05}
+  m_EdgeRadius: 0.1
 --- !u!114 &947852357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2111,8 +2111,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   leeway: 0.05
-  tempName: {fileID: 1403070951}
-  tempVar: {fileID: 168954061}
+  methodName: {fileID: 0}
+  methodVar: {fileID: 0}
 --- !u!212 &947852358
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3232,8 +3232,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.05, y: 0.05}
+  m_EdgeRadius: 0.1
 --- !u!114 &1379919524
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3248,8 +3248,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   leeway: 0.05
-  tempName: {fileID: 1359406843}
-  tempVar: {fileID: 1713089587}
+  methodName: {fileID: 0}
+  methodVar: {fileID: 0}
 --- !u!212 &1379919525
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4339,8 +4339,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.05, y: 0.05}
+  m_EdgeRadius: 0.1
 --- !u!114 &1749686756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4355,8 +4355,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   leeway: 0.05
-  tempName: {fileID: 947649971}
-  tempVar: {fileID: 979951213}
+  methodName: {fileID: 0}
+  methodVar: {fileID: 0}
 --- !u!212 &1749686757
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4726,8 +4726,8 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.1, y: 0.1}
-  m_EdgeRadius: 0
+  m_Size: {x: 0.05, y: 0.05}
+  m_EdgeRadius: 0.1
 --- !u!114 &2070597525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4742,8 +4742,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   leeway: 0.05
-  tempName: {fileID: 773124554}
-  tempVar: {fileID: 2107799272}
+  methodName: {fileID: 0}
+  methodVar: {fileID: 0}
 --- !u!212 &2070597526
 SpriteRenderer:
   m_ObjectHideFlags: 0

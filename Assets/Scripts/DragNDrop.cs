@@ -8,11 +8,13 @@ public class DragNDrop : MonoBehaviour
     public float speed;
     public float leeway = 0.05f;
 
-    public TMP_Text tempName;
-    public TMP_InputField tempVar;
+    public TMP_Text methodName;
+    public TMP_InputField methodVar;
 
     private bool following;
     private Collider2D hoveredSlot;
+
+    public static bool dupeFix; //makes certain only 1 item is following the cursor at a time. Should fix the "placing 2 methods on top of each other" - bug
 
     // Start is called before the first frame update
     void Start()
@@ -28,7 +30,10 @@ public class DragNDrop : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && ((Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position).magnitude <= leeway))
         {
-            following = !following;
+            //following = !following;
+            if (following) following = !following;
+            else if (!dupeFix) following = true;
+            dupeFix = following? true : false;
         }
         if (following)
         {
@@ -38,16 +43,22 @@ public class DragNDrop : MonoBehaviour
         {
             transform.position = hoveredSlot.transform.position;
             hoveredSlot.gameObject.GetComponentInParent<Console>().BroadcastMessage("OnBlockRecieved", gameObject);
+            following = false;
             hoveredSlot = null; //temp
         }
       }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<DragNDrop>() == null) hoveredSlot = collision; //temporary fix, change to tags instead probably
+        if (collision.GetComponent<DragNDrop>() == null) //temporary fix, change to tags instead probably
+        {
+            if (hoveredSlot == null || (collision.transform.position - transform.position).magnitude < (hoveredSlot.transform.position - transform.position).magnitude) {
+                hoveredSlot = collision;
+                collision.GetComponent<SpriteRenderer>().color = Color.red;
+            }
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        //hoveringSlot = null;
+        if (collision.GetComponent<DragNDrop>() == null) { collision.GetComponent<SpriteRenderer>().color = Color.gray; }
     }
 }

@@ -3,6 +3,26 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
+public class BlockSlut {
+    private Transform transform;
+    private GameObject method;
+
+    public BlockSlut(Transform _transform)
+    {
+        transform = _transform;
+    }
+
+    public Transform getTrans() {
+        return transform;
+    }
+    public void setMethod(GameObject _method) {
+        method = _method;
+    }
+    public GameObject getMethod() {
+        return method;
+    }
+}
+
 public class Console : MonoBehaviour
 {
     List<Transform> blockSloths = new List<Transform>(); //honestly surprised this doesn't say sluts instead of slots
@@ -59,11 +79,11 @@ public class Console : MonoBehaviour
     {
         foreach (Transform child in transform)
         {
-            if (child.GetComponent<DragNDrop>()) { print(child.name); } //if it can be dragged, it is most likely a method. Consider changing to use tags instead later
+            if (child.GetComponent<DragNDrop>()) { } //if it can be dragged, it is most likely a method. Consider changing to use tags instead later
         }
-        string tempName = temp.GetComponent<DragNDrop>().tempName.text;
+        string tempName = temp.GetComponent<DragNDrop>().methodName.text;
         print(tempName);
-        string tempVar = temp.GetComponent<DragNDrop>().tempVar.text;
+        string tempVar = temp.GetComponent<DragNDrop>().methodVar.text;
         if (tempVar == "") tempVar= "1";
         print(tempVar);
     }
