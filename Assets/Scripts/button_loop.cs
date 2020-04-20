@@ -60,7 +60,7 @@ public class button_loop : MonoBehaviour
             forEachFunction();
             Instantiate(for_each_loop);
         }
-        derp.value = 0;
+        derp.value = 0; //resets the spiderman
     }
 
     //Probably won't use this but it is there just in case

@@ -4,17 +4,17 @@ using UnityEngine.UI;
 using UnityEngine;
 using TMPro;
 
-public class button_Method : MonoBehaviour
+public class button_if_statement : MonoBehaviour
 {
 
     public GameObject button;
     public Canvas parent;
     private TMP_Dropdown derp;
 
-    public GameObject drive_forward;
-    public GameObject drive_left;
-    public GameObject drive_right;
-    public GameObject make_u_turn;
+    public GameObject building_ahead;
+    public GameObject roadblock_ahead;
+    public GameObject end_of_road;
+    public GameObject nothing;
     public void HandleInputData(int val)
     {
         derp = button.GetComponent<TMP_Dropdown>();
@@ -26,30 +26,30 @@ public class button_Method : MonoBehaviour
         else if (val == 1)
         {
             driveForward();
-            Instantiate(drive_forward);
+            Instantiate(building_ahead);
 
         }
         else if (val == 2)
         {
 
             driveLeft();
-            Instantiate(drive_left);
+            Instantiate(roadblock_ahead);
         }
 
         else if (val == 3)
         {
             driveRight();
-            Instantiate(drive_right);
+            Instantiate(end_of_road);
 
         }
 
         else if (val == 4)
         {
             Make_u_turn();
-            Instantiate(make_u_turn);
+            Instantiate(nothing);
 
         }
-        derp.value = 0; //resets the spiderman
+        derp.value = 0;
     }
 
     //This will probably not be used but ready if it will be =)
