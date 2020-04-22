@@ -893,8 +893,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   leeway: 0.05
-  methodName: {fileID: 0}
-  methodVar: {fileID: 0}
+  methodName: {fileID: 7712477541048852813}
+  methodVar: {fileID: 6994994448355045635}
 --- !u!61 &4810222733461330779
 BoxCollider2D:
   m_ObjectHideFlags: 0

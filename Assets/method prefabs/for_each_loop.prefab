@@ -170,7 +170,7 @@ GameObject:
   - component: {fileID: 7493979697852433100}
   - component: {fileID: 6602004412874557561}
   m_Layer: 0
-  m_Name: roadblock_ahead
+  m_Name: for_each_loop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,8 +260,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   leeway: 0.05
-  methodName: {fileID: 0}
-  methodVar: {fileID: 0}
+  methodName: {fileID: 3987017081180226695}
+  methodVar: {fileID: 4974841587426481020}
 --- !u!61 &9130542161381213924
 BoxCollider2D:
   m_ObjectHideFlags: 0

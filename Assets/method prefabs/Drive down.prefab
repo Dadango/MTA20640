@@ -115,27 +115,27 @@ PrefabInstance:
     - target: {fileID: 7555307155446962655, guid: 9f95bbe9af18e6e44ba05101772e819c,
         type: 3}
       propertyPath: m_text
-      value: Drive left
+      value: DriveDown
       objectReference: {fileID: 0}
     - target: {fileID: 7555307155446962655, guid: 9f95bbe9af18e6e44ba05101772e819c,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 10
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7555307155446962655, guid: 9f95bbe9af18e6e44ba05101772e819c,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7555307155446962655, guid: 9f95bbe9af18e6e44ba05101772e819c,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7590405466655773364, guid: 9f95bbe9af18e6e44ba05101772e819c,
         type: 3}
       propertyPath: m_Name
-      value: Drive left
+      value: Drive down
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9f95bbe9af18e6e44ba05101772e819c, type: 3}

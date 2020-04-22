@@ -10,22 +10,22 @@ PrefabInstance:
     - target: {fileID: 3816655041906929615, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_text
-      value: Drive right
+      value: DriveRight
       objectReference: {fileID: 0}
     - target: {fileID: 3816655041906929615, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 3816655041906929615, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3816655041906929615, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3852871058231239844, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}

@@ -28,7 +28,7 @@ public class Console : MonoBehaviour
     List<BlockSlut> blockSloths = new List<BlockSlut>(); //honestly surprised this doesn't say sluts instead of slots
     public GameObject slotPrefab;
     public bool runButtonPH;
-    public GameObject temp;
+    public PlayerMovement playerMovement;
 
     // Start is called before the first frame update
     void Start()
@@ -78,15 +78,20 @@ public class Console : MonoBehaviour
 
     }
 
+
     IEnumerator RunConsole() //TODO - this
     {
-        print("Attempting your code");
+        //Coroutine driving;
         for (int i = 0; i < blockSloths.Count; i++) {
-            print(i);
             BlockSlut blockSlot = blockSloths[i];
             if (blockSlot.getBlock() != null)
             {
-                var blockScript = blockSlot.getBlock().GetComponent<DragNDrop>();
+                DragNDrop blockScript = blockSlot.getBlock().GetComponent<DragNDrop>();
+                print("Executing function:" + blockScript.methodName.text + " " + blockScript.methodVar.text);
+
+                playerMovement.StartCoroutine(blockScript.methodName.text);
+                yield return new WaitWhile(() => playerMovement.driving);
+                print("Function executed");
             }
         }
         yield break; //something else probably
