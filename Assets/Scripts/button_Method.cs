@@ -56,19 +56,19 @@ public class button_Method : MonoBehaviour
 
     void driveForward()
     {
-        Debug.Log("Drive forward");
+        //Debug.Log("Drive forward");
     }
     void driveLeft()
     {
-        Debug.Log("Drive left");
+        //Debug.Log("Drive left");
     }
     void driveRight()
     {
-        Debug.Log("drive right");
+        //Debug.Log("drive right");
     }
     void Make_u_turn()
     {
-        Debug.Log("Make_u_turn uturn");
+        //Debug.Log("Make_u_turn uturn");
     }
 
 }
