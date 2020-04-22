@@ -22,6 +22,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator Move()
     {
+        driving = true;
         if (Input.GetKeyDown("right"))
         {
             currentPos = transform.position;
@@ -82,7 +83,7 @@ public class PlayerMovement : MonoBehaviour
             }
 
         }
-        //driving = null;
+        driving = false;
         yield return null;
     }
 
@@ -155,12 +156,12 @@ public class PlayerMovement : MonoBehaviour
 
 
     // Update is called once per frame
-    /*void Update()
+   void Update()
     {
-        if ((Input.GetKeyDown("down") || Input.GetKeyDown("up") || Input.GetKeyDown("right")) && driving == null)
+        if ((Input.GetKeyDown("down") || Input.GetKeyDown("up") || Input.GetKeyDown("right")) && driving == false)
         {
             StartCoroutine(Move());
         }
 
-}*/
+}
 }
