@@ -144,7 +144,7 @@ public class PlayerMovement : MonoBehaviour
         {
             yield return new WaitForEndOfFrame();
             transform.position = Vector3.SmoothDamp(transform.position, destinationRight, ref velocity, smoothTime);
-            if (Mathf.Abs(transform.position.magnitude - destinationRight.magnitude) < 0.02f)
+            if (Mathf.Abs(transform.position.magnitude - destinationRight.magnitude) < 0.01f)
             {
                 transform.position = destinationRight;
                 break;
