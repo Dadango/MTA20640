@@ -21,7 +21,7 @@ public class BlockSlut {
         block = _method;
     }
     public GameObject getBlock() {
-        return block;
+        return block != null ? block : null;
     }
 
     public BlockSlut getItem(int i) {
@@ -84,9 +84,11 @@ public class Console : MonoBehaviour
     {
         float offsetY = -1.5f;
         float indentOffset = 1.5f;
+        bool marchOrder = false;
+        int tempFixTillWeFindAMoreElegantSolution = 0;
 
         block.transform.SetParent(transform);
-        for (int i = blockSloths.Count - 1; i >= 0; i--) {
+        for (int i = 0; i < blockSloths.Count; i++) { //no longer goes reversed
             BlockSlut blockSlot = blockSloths[i];
             if (blockSlot.getTrans().localPosition == block.transform.localPosition)
             {
@@ -112,15 +114,20 @@ public class Console : MonoBehaviour
                         blockSlot.getItem(j).setBlock(block);
                         if (j == blockSlot.count() - 1) { 
                             blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform));
-                            //do below for EVERY slot between i and count (everything below loop)
-                            
-                            blockSloths[blockSloths.Count - 1].getTrans().localPosition += new Vector3(0, offsetY);
+                            marchOrder = true;
+                            tempFixTillWeFindAMoreElegantSolution = i; //we want it to break out of this iteration of the outer (i) scope. This insures we skip the I of the loop (which we really want)
                         }
                     }
                 }
             }
+            if (marchOrder) {
+                if (tempFixTillWeFindAMoreElegantSolution < i) { 
+                blockSloths[i].getTrans().localPosition += new Vector3(0, offsetY); //move all blocks AFTER the one that pushes
+                if (blockSloths[i].getBlock() != null) blockSloths[i].getBlock().transform.localPosition += new Vector3(0, offsetY); //also push all accompanying blocks with their slots
+                }
+            }
         }
-
+        marchOrder = false;
     }
 
 
