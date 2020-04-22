@@ -20,6 +20,8 @@ public class PlayerMovement : MonoBehaviour
     public float smoothTime;
     Vector3 velocity = Vector3.zero;
 
+    public Collider2D obstacle;
+
     IEnumerator Move()
     {
         driving = true;
@@ -194,14 +196,22 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.name == "grayBuilding")
+        {
+            Debug.Log("Car hit the building");
+        }
+    }
 
     // Update is called once per frame
-   void Update()
+    void Update()
     {
         if ((Input.GetKeyDown("down") || Input.GetKeyDown("up") || Input.GetKeyDown("right")) || Input.GetKeyDown("left") && driving == false)
         {
             StartCoroutine(Move());
         }
 
+        OnTriggerEnter2D(obstacle);
 }
 }
