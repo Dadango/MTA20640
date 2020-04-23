@@ -61,7 +61,6 @@ public class DragNDrop : MonoBehaviour
             if (hoveredSlot == null || (collision.transform.position - transform.position).magnitude < (hoveredSlot.transform.position - transform.position).magnitude)
             {
                 hoveredSlot = collision;
-                collision.GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
         else if (collision.CompareTag("Building")) //change later as a new tag is created

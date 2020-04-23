@@ -4,22 +4,23 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BlockSlut {
-    private Transform transform;
+    private GameObject slot;
     private GameObject block;
     private List<BlockSlut> indentSloths = new List<BlockSlut>();
 
-    public BlockSlut(Transform _transform)
+    public BlockSlut(GameObject _slot)
     {
-        transform = _transform;
+        slot = _slot;
     }
 
-    public Transform getTrans() {
-        return transform;
+    public GameObject getSlot() {
+        return slot;
     }
 
     public void setBlock(GameObject _method) {
         block = _method;
     }
+
     public GameObject getBlock() {
         return block != null ? block : null;
     }
@@ -31,6 +32,12 @@ public class BlockSlut {
     {
         indentSloths[i] = newSloth;
     }
+
+    public void removeItem(int i)
+    {
+        indentSloths.RemoveAt(i);
+    }
+
     public void addItem(BlockSlut newSloth) {
         indentSloths.Add(newSloth);
     }
@@ -54,13 +61,8 @@ public class Console : MonoBehaviour
         GameObject slotClone = Instantiate(slotPrefab, new Vector2(0, 0), Quaternion.identity);
         slotClone.transform.parent = transform;
         slotClone.transform.localPosition = new Vector2(0, -1.5f);
+        blockSloths.Add(new BlockSlut(slotClone));
 
-        foreach (Transform child in transform)
-        {
-            Transform blockSlot = child.GetComponent<Transform>();
-
-            if (blockSlot != null) blockSloths.Add(new BlockSlut(blockSlot));
-        }
         //blockSlots[0].GetComponent<SpriteRenderer>().color = Color.red;
         //blockSlots[0].transform.localPosition -= new Vector3(0,50);
     }
@@ -96,31 +98,31 @@ public class Console : MonoBehaviour
         block.transform.SetParent(transform);
         for (int i = 0; i < blockSloths.Count; i++) { //no longer goes reversed
             BlockSlut blockSlot = blockSloths[i];
-            if (blockSlot.getTrans().localPosition == block.transform.localPosition)
+            if (blockSlot.getSlot().transform.localPosition == block.transform.localPosition)
             {
                 blockSloths[i].setBlock(block); //set block to slot
 
                 if (block.CompareTag("Loop")) //needs to be limited: will create new slot everytime it is placed (even if placed on top of a previous loop slot)
                 {
-                    blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform)); //if it's a loop, add a new indented slot
+                    blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY))); //if it's a loop, add a new indented slot
                     offsetY = -3; //and offset the next outer slot by -3
-                    marchOrder = true;
+                    marchOrder = true; //this actually might not have a purpose
                 }
 
                 if (i == blockSloths.Count - 1)
                 {
                     indentOffset = 0;
-                    blockSloths.Add(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform)); //if the last slot is taken, add a new one below it
+                    blockSloths.Add(new BlockSlut(addNewSlot(block, indentOffset, offsetY))); //if the last slot is taken, add a new one below it
                 }
                 break;
             }
             else if (blockSlot.getItem(0) != null){ //if the slot has indented slots
                 indentOffset = 1.5f;
                 for (int j = blockSlot.count() - 1; j >= 0 ; j--) { // go through list backwards to skip unnecessary iterations 
-                    if (blockSlot.getItem(j).getTrans().localPosition == block.transform.localPosition) { //if block is placed inside loop
+                    if (blockSlot.getItem(j).getSlot().transform.localPosition == block.transform.localPosition) { //if block is placed inside loop
                         blockSlot.getItem(j).setBlock(block); //set block to slot
                         if (j == blockSlot.count() - 1) { 
-                            blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform)); //if the last slot is taken, add a new one below it
+                            blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY))); //if the last slot is taken, add a new one below it
                             marchOrder = true;
                             tempFixTillWeFindAMoreElegantSolution = i; //we want it to break out of this iteration of the outer (i) scope. This insures we skip the I of the loop (which we really want)
                         }
@@ -130,10 +132,10 @@ public class Console : MonoBehaviour
             if (marchOrder) {
                 if (tempFixTillWeFindAMoreElegantSolution < i) {
                     for (int j = 0; j < blockSloths[i].count(); j++) { //if block has indented slots, also move all indented slots
-                        blockSloths[i].getItem(j).getTrans().localPosition += new Vector3(0, offsetY);
+                        blockSloths[i].getItem(j).getSlot().transform.localPosition += new Vector3(0, offsetY);
                         if (blockSloths[i].getItem(j).getBlock() != null) blockSloths[i].getBlock().transform.localPosition += new Vector3(0, offsetY); // if slots have blocks, also move blocks
                     }
-                blockSloths[i].getTrans().localPosition += new Vector3(0, offsetY); //move all blocks AFTER the one that pushes
+                blockSloths[i].getSlot().transform.localPosition += new Vector3(0, offsetY); //move all blocks AFTER the one that pushes
                 if (blockSloths[i].getBlock() != null) blockSloths[i].getBlock().transform.localPosition += new Vector3(0, offsetY); //also push all accompanying blocks with their slots
                 }
             }
@@ -141,13 +143,27 @@ public class Console : MonoBehaviour
         marchOrder = false;
     }
 
-    void OnBlockRemoval(GameObject block) { //add this to OnBlockRecieved instead and give them a proper naming convention?
+    void OnBlockRemoval(GameObject block) {
+        /*
         for (int i = 0; i < blockSloths.Count; i++) {
             BlockSlut blockSlot = blockSloths[i];
-            if (blockSlot.getTrans().localPosition == block.transform.localPosition) {
-                blockSloths[i].setBlock(null);
+            if (blockSlot.getSlot().transform.localPosition == block.transform.localPosition)
+            {
+                GameObject.Destroy(blockSlot.getSlot());
+                blockSloths.RemoveAt(i);
+                blockSloths.Add(new BlockSlut(addNewSlot(block, 0,0)));
+                break;
             }
-        }
+                for (int j = 0; j < blockSlot.count() - 1; j++)
+                {
+                    if (blockSlot.getItem(j).getSlot().transform.localPosition == block.transform.localPosition) {
+                    GameObject.Destroy(blockSlot.getItem(j).getSlot());
+                    blockSlot.removeItem(j);
+                    break;
+                    }
+                }
+
+        }*/
         block.transform.SetParent(null);
     }
 
