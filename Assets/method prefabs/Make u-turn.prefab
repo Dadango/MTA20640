@@ -25,22 +25,22 @@ PrefabInstance:
     - target: {fileID: 8170301477355614502, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
         type: 3}
       propertyPath: m_text
-      value: Make u-turn
+      value: MakeU-Turn
       objectReference: {fileID: 0}
     - target: {fileID: 8170301477355614502, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 8170301477355614502, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8170301477355614502, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8545781439033441643, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
         type: 3}

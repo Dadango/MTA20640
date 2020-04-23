@@ -140,16 +140,21 @@ PrefabInstance:
     - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_text
-      value: Drive right
+      value: DriveRight
       objectReference: {fileID: 0}
     - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 11
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_textInfo.spaceCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4674698350610383692, guid: 58d2f584bde091a4f854653728bdf483,
