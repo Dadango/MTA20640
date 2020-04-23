@@ -4894,6 +4894,7 @@ GameObject:
   - component: {fileID: 1533395053}
   - component: {fileID: 1533395054}
   - component: {fileID: 1533395055}
+  - component: {fileID: 1533395057}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -4964,7 +4965,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 3}
 --- !u!114 &1533395053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4977,6 +4978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0b908b109afbef940beed83b44963915, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  car: {fileID: 21300000, guid: 3b63fc727f0b7e946924ee0c8a776492, type: 3}
   driving: 0
   smoothTime: 0.1
 --- !u!61 &1533395054
@@ -5026,6 +5028,25 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!95 &1533395057
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1533395050}
+  m_Enabled: 0
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8acba6a486720b7459290e6efad0434c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1566802720
 GameObject:
   m_ObjectHideFlags: 0

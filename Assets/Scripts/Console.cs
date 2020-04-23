@@ -100,7 +100,7 @@ public class Console : MonoBehaviour
             {
                 blockSloths[i].setBlock(block); //set block to slot
 
-                if (block.CompareTag("Loop"))
+                if (block.CompareTag("Loop")) //needs to be limited: will create new slot everytime it is placed (even if placed on top of a previous loop slot)
                 {
                     blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform)); //if it's a loop, add a new indented slot
                     offsetY = -3; //and offset the next outer slot by -3
@@ -162,9 +162,11 @@ public class Console : MonoBehaviour
             {
                 if (blockSlot.getItem(0) != null) //if it has indented methods (aka is a loop)
                 {
+                    if (playerMovement.crashed) { break; }
                     for (int j = 0; j < int.Parse(blockScript.methodVar.text); j++) { //how many time to run the loops contents (will throw exceptions with bad user input
                         for (int k = 0; k < blockSlot.count()-1; k++) { //run all the blocks in the loop //can be simplified with above most likely
                             DragNDrop indScript = blockSlot.getItem(k).getBlock().GetComponent<DragNDrop>();
+                            if (playerMovement.crashed) { break; }
                             print("Executing function:" + indScript.methodName.text + " " + indScript.methodVar.text);
                             playerMovement.StartCoroutine(indScript.methodName.text);
                             yield return new WaitWhile(() => playerMovement.driving);
@@ -172,7 +174,8 @@ public class Console : MonoBehaviour
                         }
                     }
                 }
-                else { 
+                else {
+                    if (playerMovement.crashed) { break; }
                     print("Executing function:" + blockScript.methodName.text + " " + blockScript.methodVar.text);
                     playerMovement.StartCoroutine(blockScript.methodName.text);
                     yield return new WaitWhile(() => playerMovement.driving);

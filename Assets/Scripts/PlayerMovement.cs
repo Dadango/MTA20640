@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public Sprite car;
+    Vector2 startPos;
     //public Coroutine driving;
     public bool driving;
+    public bool crashed;
     Vector3 moveForward = new Vector3(1.0f, 0.0f);
     Vector3 moveLeft = new Vector3(0.0f, 1.0f);
     Vector3 moveRight = new Vector3(0.0f, -1.0f);
@@ -122,7 +125,6 @@ public class PlayerMovement : MonoBehaviour
                 break;
             }
         }
-        //print("I have moved the car to the right");
         driving = false;
         yield return null;
     }
@@ -198,8 +200,27 @@ public class PlayerMovement : MonoBehaviour
     {
         if (collision.CompareTag("Building"))
         {
+            StopAllCoroutines();
             Debug.Log("Car hit a building");
+            Animator anim = gameObject.GetComponent<Animator>();
+            anim.enabled = true;  //this is pure laziness to avoid the state machine
+            AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
+            Invoke("CarDedLul", clips[0].length); //call the function after the animation ends
+            crashed = true;
         }
+    }
+
+    void CarDedLul() {
+        Animator anim = gameObject.GetComponent<Animator>();
+        anim.enabled = false; //this is pure laziness to avoid the state machine
+        gameObject.GetComponent<SpriteRenderer>().sprite = car;
+        transform.position = startPos;
+        driving = false;
+    }
+
+    private void Start()
+    {
+        startPos = transform.position;
     }
 
     // Update is called once per frame
@@ -209,6 +230,6 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Move());
         }
-
-}
+        
+    }
 }
