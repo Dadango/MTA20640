@@ -137,5 +137,35 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_text
+      value: Drive right
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_textInfo.spaceCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4674698350610383692, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_Name
+      value: Drive right
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755224004886554573, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.035
+      objectReference: {fileID: 0}
+    - target: {fileID: 4755224004886554573, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.0145
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d2f584bde091a4f854653728bdf483, type: 3}
