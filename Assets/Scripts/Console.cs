@@ -133,7 +133,7 @@ public class Console : MonoBehaviour
 
     IEnumerator RunConsole() //TODO - this
     {
-        for (int i = 0; i < blockSloths.Count; i++) {
+        for (int i = 0; i < blockSloths.Count-1; i++) {
             BlockSlut blockSlot = blockSloths[i];
             DragNDrop blockScript = blockSlot.getBlock().GetComponent<DragNDrop>();
 
@@ -142,7 +142,7 @@ public class Console : MonoBehaviour
                 if (blockSlot.getItem(0) != null) //if it has indented methods (aka is a loop)
                 {
                     for (int j = 0; j < int.Parse(blockScript.methodVar.text); j++) { //how many time to run the loops contents (will throw exceptions with bad user input
-                        for (int k = 0; k < blockSlot.count(); k++) { //run all the blocks in the loop //can be simplified with above most likely
+                        for (int k = 0; k < blockSlot.count()-1; k++) { //run all the blocks in the loop //can be simplified with above most likely
                             DragNDrop indScript = blockSlot.getItem(k).getBlock().GetComponent<DragNDrop>();
                             print("Executing function:" + indScript.methodName.text + " " + indScript.methodVar.text);
                             playerMovement.StartCoroutine(indScript.methodName.text);
