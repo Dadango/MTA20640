@@ -53,6 +53,7 @@ public class Console : MonoBehaviour
     public bool runButtonPH;
     public bool resetButtonPH;
     public PlayerMovement playerMovement;
+    private float offsetY = -1.5f;
 
 
     // Start is called before the first frame update
@@ -90,8 +91,8 @@ public class Console : MonoBehaviour
 
     void OnBlockRecieved(GameObject block) //change to a superclass that ever block must inherit from? or interface that every block must subscribe to? or maybe just have a scriptable object or all the functions in "console" and make this a call to a specific reference... probably a dict with the function names
     {
-        float offsetY = -1.5f;
         float indentOffset = 1.5f;
+        offsetY = -1.5f;
         bool marchOrder = false;
         int tempFixTillWeFindAMoreElegantSolution = 0;
 
@@ -144,39 +145,69 @@ public class Console : MonoBehaviour
     }
 
     void OnBlockRemoval(GameObject block) {
-        /*
+        //temp code below (allows for removal of methods)
+        for (int i = 0; i < blockSloths.Count; i++)
+        {
+            BlockSlut blockSlot = blockSloths[i];
+            if (blockSlot.getSlot().transform.localPosition == block.transform.localPosition)
+            {
+                blockSlot.setBlock(null);
+            }
+        }
+
+/*        Vector3 test = new Vector3(0, 0);
+        bool itWasALoop = false;
         for (int i = 0; i < blockSloths.Count; i++) {
             BlockSlut blockSlot = blockSloths[i];
             if (blockSlot.getSlot().transform.localPosition == block.transform.localPosition)
             {
-                GameObject.Destroy(blockSlot.getSlot());
-                blockSloths.RemoveAt(i);
-                blockSloths.Add(new BlockSlut(addNewSlot(block, 0,0)));
-                break;
+                if (block.CompareTag("Loop") && !itWasALoop) //remove all indented methods as well
+                {
+                    itWasALoop = true;
+                    test.y = -blockSlot.count() * offsetY;
+                    for (int j = blockSlot.count()-1; j > 0 - 1; j--) {
+                        BlockSlut jBlock = blockSlot.getItem(j);
+                        GameObject.Destroy(jBlock.getSlot());
+                        if (jBlock.getBlock() != null) GameObject.Destroy(jBlock.getBlock());
+                    }
+                }
+                StartCoroutine("delayRemoval", i);
+                //blockSloths.RemoveAt(i);
             }
-                for (int j = 0; j < blockSlot.count() - 1; j++)
+            for (int j = 0; j < blockSlot.count() - 1; j++)
                 {
                     if (blockSlot.getItem(j).getSlot().transform.localPosition == block.transform.localPosition) {
-                    GameObject.Destroy(blockSlot.getItem(j).getSlot());
+                    //GameObject.Destroy(blockSlot.getItem(j).getSlot());
                     blockSlot.removeItem(j);
                     break;
                     }
                 }
-
+            print(test.y);
+            if (test.y != 0) {
+                if (blockSlot.getBlock() != null) { blockSlot.getBlock().transform.localPosition += test;}
+                blockSlot.getSlot().transform.localPosition += test;
+                print("Moving");
+                blockSlot.getSlot().GetComponent<SpriteRenderer>().color = Color.red;
+            }
         }*/
         block.transform.SetParent(null);
     }
 
+    IEnumerator delayRemoval(int i) {
+        yield return new WaitForEndOfFrame();
+        blockSloths.RemoveAt(i);
+    }
 
     IEnumerator RunConsole() //TODO - this
     {
         for (int i = 0; i < blockSloths.Count-1; i++) {
             BlockSlut blockSlot = blockSloths[i];
-            DragNDrop blockScript = blockSlot.getBlock().GetComponent<DragNDrop>();
 
             if (blockSlot.getBlock() != null) //if the slot is not empty (has a block)
             {
-                if (blockSlot.getItem(0) != null) //if it has indented methods (aka is a loop)
+                DragNDrop blockScript = blockSlot.getBlock().GetComponent<DragNDrop>();
+
+                if (blockSlot.getBlock().CompareTag("Loop")) //if it has indented methods (aka is a loop)
                 {
                     if (playerMovement.crashed) { break; }
                     for (int j = 0; j < int.Parse(blockScript.methodVar.text); j++) { //how many time to run the loops contents (will throw exceptions with bad user input
