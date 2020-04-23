@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BlockSlut {
     private Transform transform;
@@ -44,7 +44,9 @@ public class Console : MonoBehaviour
     List<BlockSlut> blockSloths = new List<BlockSlut>(); //honestly surprised this doesn't say sluts instead of slots
     public GameObject slotPrefab;
     public bool runButtonPH;
+    public bool resetButtonPH;
     public PlayerMovement playerMovement;
+
 
     // Start is called before the first frame update
     void Start()
@@ -71,9 +73,13 @@ public class Console : MonoBehaviour
 
             //TO DO: disable everything else?
         }
+        if (resetButtonPH) {
+            resetButtonPH = false;
+            ResetScene();
+        }
     }
 
-    GameObject addNewSlot(GameObject block, float x, float y) {
+    GameObject addNewSlot(GameObject block, float x, float y) { //adds a new slot below the current slot
         GameObject slotClone = Instantiate(slotPrefab, new Vector2(0, 0), Quaternion.identity);
         slotClone.transform.SetParent(transform);
         slotClone.transform.localPosition = new Vector2(x, (block.transform.localPosition.y + y));
@@ -92,28 +98,29 @@ public class Console : MonoBehaviour
             BlockSlut blockSlot = blockSloths[i];
             if (blockSlot.getTrans().localPosition == block.transform.localPosition)
             {
-                blockSloths[i].setBlock(block);
+                blockSloths[i].setBlock(block); //set block to slot
 
                 if (block.CompareTag("Loop"))
                 {
-                    blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform));
-                    offsetY = -3;
+                    blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform)); //if it's a loop, add a new indented slot
+                    offsetY = -3; //and offset the next outer slot by -3
+                    marchOrder = true;
                 }
 
                 if (i == blockSloths.Count - 1)
                 {
                     indentOffset = 0;
-                    blockSloths.Add(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform));
+                    blockSloths.Add(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform)); //if the last slot is taken, add a new one below it
                 }
                 break;
             }
-            else if (blockSlot.getItem(0) != null){
+            else if (blockSlot.getItem(0) != null){ //if the slot has indented slots
                 indentOffset = 1.5f;
                 for (int j = blockSlot.count() - 1; j >= 0 ; j--) { // go through list backwards to skip unnecessary iterations 
-                    if (blockSlot.getItem(j).getTrans().localPosition == block.transform.localPosition) { //if block placed inside loop
-                        blockSlot.getItem(j).setBlock(block);
+                    if (blockSlot.getItem(j).getTrans().localPosition == block.transform.localPosition) { //if block is placed inside loop
+                        blockSlot.getItem(j).setBlock(block); //set block to slot
                         if (j == blockSlot.count() - 1) { 
-                            blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform));
+                            blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY).transform)); //if the last slot is taken, add a new one below it
                             marchOrder = true;
                             tempFixTillWeFindAMoreElegantSolution = i; //we want it to break out of this iteration of the outer (i) scope. This insures we skip the I of the loop (which we really want)
                         }
@@ -121,13 +128,27 @@ public class Console : MonoBehaviour
                 }
             }
             if (marchOrder) {
-                if (tempFixTillWeFindAMoreElegantSolution < i) { 
+                if (tempFixTillWeFindAMoreElegantSolution < i) {
+                    for (int j = 0; j < blockSloths[i].count(); j++) { //if block has indented slots, also move all indented slots
+                        blockSloths[i].getItem(j).getTrans().localPosition += new Vector3(0, offsetY);
+                        if (blockSloths[i].getItem(j).getBlock() != null) blockSloths[i].getBlock().transform.localPosition += new Vector3(0, offsetY); // if slots have blocks, also move blocks
+                    }
                 blockSloths[i].getTrans().localPosition += new Vector3(0, offsetY); //move all blocks AFTER the one that pushes
                 if (blockSloths[i].getBlock() != null) blockSloths[i].getBlock().transform.localPosition += new Vector3(0, offsetY); //also push all accompanying blocks with their slots
                 }
             }
         }
         marchOrder = false;
+    }
+
+    void OnBlockRemoval(GameObject block) { //add this to OnBlockRecieved instead and give them a proper naming convention?
+        for (int i = 0; i < blockSloths.Count; i++) {
+            BlockSlut blockSlot = blockSloths[i];
+            if (blockSlot.getTrans().localPosition == block.transform.localPosition) {
+                blockSloths[i].setBlock(null);
+            }
+        }
+        block.transform.SetParent(null);
     }
 
 
@@ -160,5 +181,9 @@ public class Console : MonoBehaviour
             }
         }
         yield break; //something else probably
+    }
+
+    void ResetScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().path, LoadSceneMode.Single); //add "don't destroy on load" or change this, if fow is implemented
     }
 }

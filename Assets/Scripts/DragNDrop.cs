@@ -13,6 +13,7 @@ public class DragNDrop : MonoBehaviour
 
     private bool following;
     private Collider2D hoveredSlot;
+    private bool trasher;
 
     public static bool dupeFix; //makes certain only 1 item is following the cursor at a time. Should fix the "placing 2 methods on top of each other" - bug
 
@@ -35,6 +36,10 @@ public class DragNDrop : MonoBehaviour
             if (following) following = !following;
             else if (!dupeFix) following = true;
             dupeFix = following? true : false;
+            if (transform.parent != null) {
+                transform.parent.GetComponent<Console>().BroadcastMessage("OnBlockRemoval", gameObject);
+                hoveredSlot = null; //temp
+            }
         }
         if (following)
         {
@@ -47,19 +52,25 @@ public class DragNDrop : MonoBehaviour
             following = false;
             hoveredSlot = null; //temp
         }
+        else if (trasher) { GameObject.Destroy(gameObject); }
       }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.GetComponent<DragNDrop>() == null) //temporary fix, change to tags instead probably
+        if (collision.CompareTag("Slot"))
         {
-            if (hoveredSlot == null || (collision.transform.position - transform.position).magnitude < (hoveredSlot.transform.position - transform.position).magnitude) {
+            if (hoveredSlot == null || (collision.transform.position - transform.position).magnitude < (hoveredSlot.transform.position - transform.position).magnitude)
+            {
                 hoveredSlot = collision;
                 collision.GetComponent<SpriteRenderer>().color = Color.red;
             }
         }
+        else if (collision.CompareTag("Building")) //change later as a new tag is created
+        {
+            trasher = true;
+        }
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.GetComponent<DragNDrop>() == null) { collision.GetComponent<SpriteRenderer>().color = Color.gray; }
+        trasher = false;
     }
 }

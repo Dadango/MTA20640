@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Loop
   - Building
+  - Slot
   layers:
   - Default
   - TransparentFX
