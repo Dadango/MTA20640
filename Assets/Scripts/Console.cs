@@ -54,7 +54,7 @@ public class Console : MonoBehaviour
     public bool resetButtonPH;
     public PlayerMovement playerMovement;
     private float offsetY = -1.5f;
-
+    public Vector2 direction;
 
     // Start is called before the first frame update
     void Start()
@@ -63,9 +63,6 @@ public class Console : MonoBehaviour
         slotClone.transform.parent = transform;
         slotClone.transform.localPosition = new Vector2(0, -1.5f);
         blockSloths.Add(new BlockSlut(slotClone));
-
-        //blockSlots[0].GetComponent<SpriteRenderer>().color = Color.red;
-        //blockSlots[0].transform.localPosition -= new Vector3(0,50);
     }
 
     private void Update()
@@ -103,7 +100,7 @@ public class Console : MonoBehaviour
             {
                 blockSloths[i].setBlock(block); //set block to slot
 
-                if (block.CompareTag("Loop")) //needs to be limited: will create new slot everytime it is placed (even if placed on top of a previous loop slot)
+                if (block.CompareTag("Loop") || block.CompareTag("IfStatement")) //needs to be limited: will create new slot everytime it is placed (even if placed on top of a previous loop slot)
                 {
                     blockSlot.addItem(new BlockSlut(addNewSlot(block, indentOffset, offsetY))); //if it's a loop, add a new indented slot
                     offsetY = -3; //and offset the next outer slot by -3
@@ -154,6 +151,7 @@ public class Console : MonoBehaviour
                 blockSlot.setBlock(null);
             }
         }
+                block.transform.SetParent(null);
 
 /*        Vector3 test = new Vector3(0, 0);
         bool itWasALoop = false;
@@ -190,7 +188,6 @@ public class Console : MonoBehaviour
                 blockSlot.getSlot().GetComponent<SpriteRenderer>().color = Color.red;
             }
         }*/
-        block.transform.SetParent(null);
     }
 
     IEnumerator delayRemoval(int i) {
@@ -206,15 +203,53 @@ public class Console : MonoBehaviour
             if (blockSlot.getBlock() != null) //if the slot is not empty (has a block)
             {
                 DragNDrop blockScript = blockSlot.getBlock().GetComponent<DragNDrop>();
+                if (playerMovement.crashed) { break; }
 
-                if (blockSlot.getBlock().CompareTag("Loop")) //if it has indented methods (aka is a loop)
+                if (blockSlot.getBlock().CompareTag("IfStatement"))
                 {
-                    if (playerMovement.crashed) { break; }
-                    for (int j = 0; j < int.Parse(blockScript.methodVar.text); j++) { //how many time to run the loops contents (will throw exceptions with bad user input
+                    //Vector2 direction;
+                    int thot = (int)playerMovement.transform.eulerAngles.z;
+                    switch (thot)
+                    {
+                        case 90:
+                            direction = new Vector2(0, 1);
+                            break;
+                        case 0:
+                            direction = new Vector2(1, 0);
+                            break;
+                        case -90:
+                            direction = new Vector2(0, -1);
+                            break;
+                        case 180:
+                            direction = new Vector2(-1, 0);
+                            break;
+                        default:
+                            direction = new Vector2(0, 0);
+                            break;
+                    }
+                    GameObject inFront = Physics2D.Raycast(playerMovement.transform.position, direction).collider.gameObject;
+                    print(inFront.name);
+                    if ((inFront.CompareTag("Building") && blockScript.methodVar == 'b') || (inFront.CompareTag("RoadBlock") && blockScript.methodVar == 'r') || (blockScript.methodVar == 'e'))
+                    {
+                        for (int j = 0; j < blockSlot.count() - 1; j++)
+                        {
+                            DragNDrop indScript = blockSlot.getItem(j).getBlock().GetComponent<DragNDrop>();
+                            if (playerMovement.crashed) { break; }
+                            print("Executing function:" + indScript.methodName.text);
+                            playerMovement.StartCoroutine(indScript.methodName.text);
+                            yield return new WaitWhile(() => playerMovement.driving);
+                            print("Function executed");
+                        }
+                    }
+                    
+                }
+                else if (blockSlot.getBlock().CompareTag("Loop")) //if it has indented methods (aka is a loop)
+                {
+                    for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++) { //how many time to run the loops contents (will throw exceptions with bad user input
                         for (int k = 0; k < blockSlot.count()-1; k++) { //run all the blocks in the loop //can be simplified with above most likely
                             DragNDrop indScript = blockSlot.getItem(k).getBlock().GetComponent<DragNDrop>();
                             if (playerMovement.crashed) { break; }
-                            print("Executing function:" + indScript.methodName.text + " " + indScript.methodVar.text);
+                            print("Executing function:" + indScript.methodName.text);
                             playerMovement.StartCoroutine(indScript.methodName.text);
                             yield return new WaitWhile(() => playerMovement.driving);
                             print("Function executed");
@@ -222,8 +257,7 @@ public class Console : MonoBehaviour
                     }
                 }
                 else {
-                    if (playerMovement.crashed) { break; }
-                    print("Executing function:" + blockScript.methodName.text + " " + blockScript.methodVar.text);
+                    print("Executing function:" + blockScript.methodName.text);
                     playerMovement.StartCoroutine(blockScript.methodName.text);
                     yield return new WaitWhile(() => playerMovement.driving);
                     print("Function executed");
@@ -236,4 +270,11 @@ public class Console : MonoBehaviour
     void ResetScene() {
         SceneManager.LoadScene(SceneManager.GetActiveScene().path, LoadSceneMode.Single); //add "don't destroy on load" or change this, if fow is implemented
     }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        Gizmos.DrawRay(playerMovement.transform.position, direction);
+    }
+
 }

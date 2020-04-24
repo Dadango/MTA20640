@@ -9,7 +9,8 @@ public class DragNDrop : MonoBehaviour
     public float leeway = 0.05f;
 
     public TMP_Text methodName;
-    public TMP_InputField methodVar;
+    public TMP_InputField loopVar;
+    public char methodVar;
 
     private bool following;
     private Collider2D hoveredSlot;
@@ -63,7 +64,7 @@ public class DragNDrop : MonoBehaviour
                 hoveredSlot = collision;
             }
         }
-        else if (collision.CompareTag("Building")) //change later as a new tag is created
+        else if (collision.CompareTag("TrashCan"))
         {
             trasher = true;
         }

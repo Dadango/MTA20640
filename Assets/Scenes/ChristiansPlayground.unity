@@ -1519,6 +1519,7 @@ MonoBehaviour:
   runButtonPH: 0
   resetButtonPH: 0
   playerMovement: {fileID: 1533395053}
+  direction: {x: 0, y: 0}
 --- !u!4 &509481813
 Transform:
   m_ObjectHideFlags: 0
@@ -2897,7 +2898,8 @@ MonoBehaviour:
   speed: 10
   leeway: 0.05
   methodName: {fileID: 1403070951}
-  methodVar: {fileID: 168954061}
+  loopVar: {fileID: 0}
+  methodVar: 0
 --- !u!212 &947852358
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3003,7 +3005,7 @@ RectTransform:
   - {fileID: 1566802721}
   - {fileID: 2132994878}
   m_Father: {fileID: 1109066717}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3375,7 +3377,7 @@ RectTransform:
   - {fileID: 1172037561}
   - {fileID: 936668308}
   m_Father: {fileID: 1109066717}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -3455,7 +3457,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: If building ahead
       m_Image: {fileID: 0}
-    - m_Text: If roadblock ahjead
+    - m_Text: If roadblock ahead
       m_Image: {fileID: 0}
     - m_Text: If end of road
       m_Image: {fileID: 0}
@@ -3625,8 +3627,8 @@ RectTransform:
   - {fileID: 162247113}
   - {fileID: 892299191}
   - {fileID: 1806750227}
-  - {fileID: 956278526}
   - {fileID: 1090153243}
+  - {fileID: 956278526}
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4786,7 +4788,7 @@ GameObject:
   - component: {fileID: 1416867896}
   m_Layer: 0
   m_Name: Trash Can
-  m_TagString: Building
+  m_TagString: TrashCan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4895,7 +4897,7 @@ GameObject:
   - component: {fileID: 1533395054}
   - component: {fileID: 1533395055}
   - component: {fileID: 1533395057}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5481,10 +5483,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: while loop
       m_Image: {fileID: 0}
-    - m_Text: Do-while loop
-      m_Image: {fileID: 0}
-    - m_Text: For-each loop
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5551,7 +5549,7 @@ MonoBehaviour:
   parent: {fileID: 0}
   for_loop: {fileID: 1687508606096089386, guid: 8eaf56e27f66303409ea36243e1f4b37,
     type: 3}
-  while_loop: {fileID: 812977363250311930, guid: ec656c347fe9b8648a0e3ffbe310d5f5,
+  while_loop: {fileID: 812977363250311930, guid: 9dec995e230187e429584f394f95c175,
     type: 3}
   do_while_loop: {fileID: 3501355749042844556, guid: 5f9cc2f2643675541ac1d71171753afb,
     type: 3}

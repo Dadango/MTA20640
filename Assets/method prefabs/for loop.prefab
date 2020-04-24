@@ -724,7 +724,8 @@ MonoBehaviour:
   speed: 10
   leeway: 0.05
   methodName: {fileID: 1687508605284190984}
-  methodVar: {fileID: 1687508606312147869}
+  loopVar: {fileID: 1687508606312147869}
+  methodVar: 
 --- !u!61 &1687508606096089389
 BoxCollider2D:
   m_ObjectHideFlags: 0

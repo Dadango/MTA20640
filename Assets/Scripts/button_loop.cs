@@ -66,20 +66,20 @@ public class button_loop : MonoBehaviour
     //Probably won't use this but it is there just in case
     void forLoopFunction()
     {
-        Debug.Log("for-loop");
+        //Debug.Log("for-loop");
     }
     void whileFunction()
     {
-        Debug.Log("while-loop");
+        //Debug.Log("while-loop");
     }
     void doWhileFunction()
     {
-        Debug.Log("do-While-loop");
+       // Debug.Log("do-While-loop");
     }
 
     void forEachFunction()
     {
-        Debug.Log("for-each-loop");
+        //Debug.Log("for-each-loop");
     }
 
 
