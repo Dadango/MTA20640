@@ -7,8 +7,9 @@ TagManager:
   - Loop
   - Building
   - Slot
-  - trash_can
-  - roadblock
+  - TrashCan
+  - RoadBlock
+  - IfStatement
   layers:
   - Default
   - TransparentFX
