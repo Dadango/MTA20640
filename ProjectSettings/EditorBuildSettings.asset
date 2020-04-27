@@ -11,4 +11,19 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ChristiansPlayground.unity
     guid: b128beb3725adca4993b751a91ce60f1
+  - enabled: 1
+    path: Assets/Scenes/Levels/level 1.unity
+    guid: d7b506705b0387b4298de61b6df643e4
+  - enabled: 1
+    path: Assets/Scenes/Levels/level 2.unity
+    guid: 64350c27f49cde34198b9498915ddd1c
+  - enabled: 1
+    path: Assets/Scenes/Levels/level 3.unity
+    guid: 77dc15bafec07674ebc6a625758eb78c
+  - enabled: 1
+    path: Assets/Scenes/Levels/level 4.unity
+    guid: d98044f3b3b00584c86420d8dc73a147
+  - enabled: 1
+    path: Assets/Scenes/Levels/level 5.unity
+    guid: 453aed9892ae8ba4093b71a55bfb2fd6
   m_configObjects: {}

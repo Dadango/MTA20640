@@ -133,6 +133,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: finish line
       objectReference: {fileID: 0}
+    - target: {fileID: 4077270464538195812, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
+        type: 3}
+      propertyPath: newLevelString
+      value: level 5
+      objectReference: {fileID: 0}
     - target: {fileID: 8181365012551345328, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}
       propertyPath: m_LocalPosition.x
