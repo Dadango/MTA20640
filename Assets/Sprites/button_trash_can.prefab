@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3095432201992390774}
   m_Layer: 0
   m_Name: button_trash_can
-  m_TagString: trash_can
+  m_TagString: TrashCan
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
