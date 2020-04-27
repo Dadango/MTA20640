@@ -7,6 +7,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2111050079178353335, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3083378798166451331, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: methodVar
@@ -176,6 +181,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.0145
+      objectReference: {fileID: 0}
+    - target: {fileID: 6086546565201709747, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_BlockingMask.m_Bits
+      value: 4294967295
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d2f584bde091a4f854653728bdf483, type: 3}
