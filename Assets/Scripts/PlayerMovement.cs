@@ -198,7 +198,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Building") || collision.CompareTag("roadblock"))
+        if (collision.CompareTag("Building") || collision.CompareTag("RoadBlock"))
         {
             StopAllCoroutines();
             Debug.Log("Car hit a building");
