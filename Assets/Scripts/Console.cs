@@ -22,7 +22,7 @@ public class Console : MonoBehaviour
 {
     private List<slotValue> slots = new List<slotValue>();
     public GameObject slotPrefab;
-
+    public gas_meter gasMeter;
     public bool runButtonPH;
     public bool resetButtonPH;
 
@@ -30,6 +30,7 @@ public class Console : MonoBehaviour
     private Vector2 direction;
 
     private bool running;
+    int loopFixer = 0;
 
     // Start is called before the first frame update
     void Start()
@@ -59,7 +60,12 @@ public class Console : MonoBehaviour
 
     public void OnBlockRemoval(GameObject block) {
         foreach (slotValue slut in slots) {
-            if (block.transform.localPosition.x == slut.slot.transform.localPosition.x && block.transform.localPosition.y == slut.slot.transform.localPosition.y) {
+            Vector3 slotPos = slut.slot.transform.localPosition;
+            float slotX = Mathf.Round(slotPos.x * 10f) / 10f; //remove everything after the first decimal
+            float slotY = Mathf.Round(slotPos.y * 10f) / 10f;
+            float blockX = Mathf.Round(block.transform.localPosition.x * 10f) / 10f;
+            float blockY = Mathf.Round(block.transform.localPosition.y * 10f) / 10f;
+            if (blockX == slotX && blockY == slotY) {
                 slut.method = null;
             }
         }
@@ -70,6 +76,7 @@ public class Console : MonoBehaviour
     {
         if (runButtonPH) {
             runButtonPH = false;
+            loopFixer = -1;
             StartCoroutine("RunConsole", 0);
 
             //TO DO: disable everything else?
@@ -80,49 +87,60 @@ public class Console : MonoBehaviour
         }
     }
 
+    void CheckConsole() {
+        //check slot above and to the left to see if it's a loop or if statement
+    }
+
+
     IEnumerator RunConsole(int number) //TODO - this
     {
         int startIndent = number%3;
         for (int i = number; i < slots.Count-(2-startIndent); i += 3) {
-            //print(slots.Count - (2 - startIndent));
             if (playerMovement.crashed) { break; }
             slotValue slot = slots[i];
             if (slot.method != null)
             {
+                loopFixer += 1;
                 DragNDrop blockScript = slot.method.GetComponent<DragNDrop>();
                 if (slot.method.CompareTag("IfStatement"))
                 {
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
                     if (ifif(blockScript))
                     {
-                        print("if-Block entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
+                        //print("if-Block entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
                         startIndent = startIndent > 0 ? startIndent - 1 : startIndent;
                         yield return StartCoroutine("RunConsole", (i + 3 + (startIndent + 1)));
+                        i += loopFixer * 3;
                     }
                 }
                 else if (slot.method.CompareTag("Loop"))
                 {
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
+                    //int oldLoop = loopFixer;
                     for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++)
                     {
                         if (playerMovement.crashed) { break; }
-                        print("loop entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
+                        //print("loop entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
                         startIndent = startIndent > 0 ? startIndent - 1 : startIndent;
-                        yield return StartCoroutine("RunConsole", (i + 3 + (startIndent + 1)));
+                        yield return StartCoroutine("RunConsole", (i + 3 + (startIndent + 1)));;
                     }
+                    //loopFixer -= int.Parse(blockScript.loopVar.text) - ((loopFixer - oldLoop) / int.Parse(blockScript.loopVar.text));
+                    //print(i +" : "+ loopFixer);
+                    //i += loopFixer*3;
                 }
                 else
                 {
-
-                    print("Executing function:" + blockScript.methodName.text + Time.time.ToString());
+                    print("Executing function: " + blockScript.methodName.text + " " + Time.time.ToString());
                     yield return playerMovement.StartCoroutine(blockScript.methodName.text);
                     //yield return new WaitWhile(() => playerMovement.driving); //<-- this is still nice code. Just not used
                 }
             }
-            else if (startIndent > 0) { print("Method is null! " + Time.time.ToString() + "Looking at: " + (i/3) + "," + (i%3)); break; }//if outside of loop, and no more methods remain, break
+            else if (startIndent > 0) { print("Method is null! " + "Looking at: " + (i/3) + "," + (i%3) +" : "+ Time.time.ToString()); break; }//if outside of loop, and no more methods remain, break (but skip any further indents?))
         }
         yield break; //something else probably
     }
+
+
 
     bool ifif(DragNDrop blockScript) {
         int thot = (int)playerMovement.transform.eulerAngles.z;

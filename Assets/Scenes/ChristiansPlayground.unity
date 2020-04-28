@@ -591,6 +591,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &199625479 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 963470388556735029, guid: 16cdcc40b791bce449f3d9bec2b37030,
+    type: 3}
+  m_PrefabInstance: {fileID: 356693994}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06528bcf50afbd4b91eef7a5345d6c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &200718996
 GameObject:
   m_ObjectHideFlags: 0
@@ -4659,6 +4671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 1258152255572902861, guid: 1dc77ffd699abaa408c4515d15547c22,
     type: 3}
+  gasMeter: {fileID: 199625479}
   runButtonPH: 0
   resetButtonPH: 0
   playerMovement: {fileID: 1533395053}

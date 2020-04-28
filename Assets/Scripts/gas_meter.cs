@@ -8,8 +8,6 @@ public class gas_meter : MonoBehaviour
     public TextMeshProUGUI gas_text;
     private int gas_total = 300;
     private int gas = 300;
-    //Might want to add public gameObject just to make sure everything interacts with the same object, not sure if it is needed or not 
-    //public GameObject gas_variable;
 
 
     // used for testing the gas checker function
@@ -25,24 +23,22 @@ public class gas_meter : MonoBehaviour
     }*/
 
         //Could also change id to string so it correlates to loop, method or whatever 
-    void gasChecker(int id)
+    public void gasChecker(int id) //id refers to if it is a loop, method or if-statement
     {
-        //gas = gas_variable.GetComponent<gas>().gass;
-        if (id == 0) //id refers to if it is a loop, method or if-statement
+        if (id == 0) // 0 is a method raw
         {
             gas -= 20;
             gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
         }
-        else if(id == 1)
+        else if(id == 1) // 1 is a method inside a loop
         {
             gas -= 10;
             gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
         }
-        else if(id == 2)
+        else if(id == 2) // 2 is a method inside an if-statement
         {
             gas -= 15;
             gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
         }
-        
     }
 }
