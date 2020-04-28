@@ -126,6 +126,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         driving = false;
+        //print("Finished driving: right" + Time.time.ToString());
         yield return null;
     }
 
@@ -149,6 +150,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         driving = false;
+        //print("Finished driving: left" + Time.time.ToString());
         yield return null;
     }
 
@@ -171,6 +173,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         driving = false;
+        //print("Finished driving: up" + Time.time.ToString());
         yield return null;
     }
 
@@ -193,6 +196,7 @@ public class PlayerMovement : MonoBehaviour
             }
         }
         driving = false;
+        //print("Finished driving: down" + Time.time.ToString());
         yield return null;
     }
 
@@ -230,6 +234,5 @@ public class PlayerMovement : MonoBehaviour
         {
             StartCoroutine(Move());
         }
-        
     }
 }

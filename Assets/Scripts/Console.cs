@@ -3,18 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class intWhore
-{
-    public int outerslot;
-    public int indent;
-
-    public intWhore(int _outerslot, int _indent)
-    {
-        outerslot = _outerslot;
-        indent = _indent;
-    }
-}
-
 public class slotValue
 {
     public int indentLvl;
@@ -82,7 +70,7 @@ public class Console : MonoBehaviour
     {
         if (runButtonPH) {
             runButtonPH = false;
-            StartCoroutine("RunConsole", new intWhore(0, 0));
+            StartCoroutine("RunConsole", 0);
 
             //TO DO: disable everything else?
         }
@@ -92,13 +80,11 @@ public class Console : MonoBehaviour
         }
     }
 
-    
-
-    IEnumerator RunConsole(intWhore work) //TODO - this
+    IEnumerator RunConsole(int number) //TODO - this
     {
-        int startIndent = work.indent;
-        for (int i = work.outerslot + startIndent; i < slots.Count-(2-startIndent); i += 3) {
-            print(slots.Count - (2 - startIndent));
+        int startIndent = number%3;
+        for (int i = number; i < slots.Count-(2-startIndent); i += 3) {
+            //print(slots.Count - (2 - startIndent));
             if (playerMovement.crashed) { break; }
             slotValue slot = slots[i];
             if (slot.method != null)
@@ -109,29 +95,31 @@ public class Console : MonoBehaviour
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
                     if (ifif(blockScript))
                     {
-                        print("if-Block entered. Starting new console at row: " + i + 3 + " and " + startIndent + 1);
-                        yield return StartCoroutine("RunConsole", (new intWhore(i + 3, startIndent + 1)));
+                        print("if-Block entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
+                        startIndent = startIndent > 0 ? startIndent - 1 : startIndent;
+                        yield return StartCoroutine("RunConsole", (i + 3 + (startIndent + 1)));
                     }
                 }
                 else if (slot.method.CompareTag("Loop"))
                 {
-                    if (startIndent > 2) { break; } //don't allow nesting within nesting!
+                    if (startIndent > 1) { break; } //don't allow nesting within nesting!
                     for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++)
                     {
                         if (playerMovement.crashed) { break; }
-                        print("loop entered. Starting new console at row: " + i + 3 + " and " + startIndent + 1);
-                        yield return StartCoroutine("RunConsole", (new intWhore(i + 3, startIndent + 1)));
+                        print("loop entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
+                        startIndent = startIndent > 0 ? startIndent - 1 : startIndent;
+                        yield return StartCoroutine("RunConsole", (i + 3 + (startIndent + 1)));
                     }
                 }
                 else
                 {
-                    print("Executing function:" + blockScript.methodName.text);
-                    playerMovement.StartCoroutine(blockScript.methodName.text);
-                    yield return new WaitWhile(() => playerMovement.driving);
-                    //print("Function executed");
+
+                    print("Executing function:" + blockScript.methodName.text + Time.time.ToString());
+                    yield return playerMovement.StartCoroutine(blockScript.methodName.text);
+                    //yield return new WaitWhile(() => playerMovement.driving); //<-- this is still nice code. Just not used
                 }
             }
-            else break;
+            else if (startIndent > 0) { print("Method is null! " + Time.time.ToString() + "Looking at: " + (i/3) + "," + (i%3)); break; }//if outside of loop, and no more methods remain, break
         }
         yield break; //something else probably
     }
@@ -156,7 +144,7 @@ public class Console : MonoBehaviour
                 direction = new Vector2(0, 0);
                 break;
         }
-        RaycastHit2D inFrontRay = Physics2D.Raycast(playerMovement.transform.position, direction, 1);
+        RaycastHit2D inFrontRay = Physics2D.Raycast(playerMovement.transform.position, direction, 1.5f);
         if (!inFrontRay) return false;
         GameObject inFront = inFrontRay.collider.gameObject;
         return ((inFront.CompareTag("Building") && blockScript.methodVar == 'b') || (inFront.CompareTag("RoadBlock") && blockScript.methodVar == 'r') || (blockScript.methodVar == 'e'));
@@ -173,19 +161,3 @@ public class Console : MonoBehaviour
     }
 
 }
-
-/* IEnumerator methodBoi(intWhore numberWorkaround) {
-     running = true;
-     for (int i = numberWorkaround.outerslot + 3 + numberWorkaround.indent; i < slots.Count - numberWorkaround.indent; i += 3)
-     {
-         if (playerMovement.crashed) { break; }
-         if (slots[i].method == null) { break; }
-         if (slots[i].method.CompareTag("IfStatement")) { }
-         DragNDrop indScript = slots[i].method.GetComponent<DragNDrop>();
-         print("Executing function:" + indScript.methodName.text);
-         playerMovement.StartCoroutine(indScript.methodName.text);
-         yield return new WaitWhile(() => playerMovement.driving);
-         print("Function executed");
-     }
-     running = false;
- }*/
