@@ -99,8 +99,8 @@ getblock comparetag
 
     private void Update()
     {
-        if (runButtonPH) {
-            runButtonPH = false;
+        if (button_run.runButtonPH) {
+            button_run.runButtonPH = false;
             loopFixer = -1;
             StartCoroutine("RunConsole", 0);
 

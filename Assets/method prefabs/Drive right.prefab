@@ -7,6 +7,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 564294917121663452, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 564294917121663452, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2111050079178353335, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_RaycastTarget
@@ -16,6 +26,16 @@ PrefabInstance:
         type: 3}
       propertyPath: methodVar
       value: 101
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678720290965644162, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3678720290965644162, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 3816655041906929615, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
@@ -166,6 +186,31 @@ PrefabInstance:
         type: 3}
       propertyPath: m_textInfo.wordCount
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_fontSize
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_fontSizeBase
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4346528024903576935, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -180.50356
       objectReference: {fileID: 0}
     - target: {fileID: 4674698350610383692, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
