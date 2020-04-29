@@ -220,6 +220,7 @@ public class PlayerMovement : MonoBehaviour
         gameObject.GetComponent<SpriteRenderer>().sprite = car;
         transform.position = startPos;
         driving = false;
+        crashed = false;
     }
 
     private void Start()

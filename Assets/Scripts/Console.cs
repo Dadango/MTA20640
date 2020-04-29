@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class slotValue
 {
@@ -87,46 +88,42 @@ public class Console : MonoBehaviour
         }
     }
 
-    void CheckConsole() {
-        //check slot above and to the left to see if it's a loop or if statement
-    }
 
 
     IEnumerator RunConsole(int number) //TODO - this
     {
         int startIndent = number%3;
         for (int i = number; i < slots.Count-(2-startIndent); i += 3) {
+            if (loopFixer > 0 && loopFixer > i && startIndent < loopFixer%3) { i = (loopFixer - loopFixer%3) + startIndent; loopFixer = 0; }
             if (playerMovement.crashed) { break; }
             slotValue slot = slots[i];
+            if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
+            if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }
+            if (startIndent == 2) { slot.slot.GetComponent<Image>().color = Color.magenta; }
             if (slot.method != null)
             {
-                loopFixer += 1;
                 DragNDrop blockScript = slot.method.GetComponent<DragNDrop>();
                 if (slot.method.CompareTag("IfStatement"))
                 {
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
                     if (ifif(blockScript))
                     {
-                        //print("if-Block entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
-                        startIndent = startIndent > 0 ? startIndent - 1 : startIndent;
-                        yield return StartCoroutine("RunConsole", (i + 3 + (startIndent + 1)));
-                        i += loopFixer * 3;
+                        print("if-Block entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
+                        yield return StartCoroutine("RunConsole", (i + 3 + 1));
+                    }
+                    else {
+                        yield return StartCoroutine("WhatIfRunConsole", (i + 3 + 1));
                     }
                 }
                 else if (slot.method.CompareTag("Loop"))
                 {
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
-                    //int oldLoop = loopFixer;
                     for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++)
                     {
                         if (playerMovement.crashed) { break; }
-                        //print("loop entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
-                        startIndent = startIndent > 0 ? startIndent - 1 : startIndent;
-                        yield return StartCoroutine("RunConsole", (i + 3 + (startIndent + 1)));;
+                        print("loop entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
+                        yield return StartCoroutine("RunConsole", (i + 3 + 1));
                     }
-                    //loopFixer -= int.Parse(blockScript.loopVar.text) - ((loopFixer - oldLoop) / int.Parse(blockScript.loopVar.text));
-                    //print(i +" : "+ loopFixer);
-                    //i += loopFixer*3;
                 }
                 else
                 {
@@ -135,11 +132,49 @@ public class Console : MonoBehaviour
                     //yield return new WaitWhile(() => playerMovement.driving); //<-- this is still nice code. Just not used
                 }
             }
-            else if (startIndent > 0) { print("Method is null! " + "Looking at: " + (i/3) + "," + (i%3) +" : "+ Time.time.ToString()); break; }//if outside of loop, and no more methods remain, break (but skip any further indents?))
+            else if (startIndent > 0) { print("Method is null! " + "Looking at: " + (i/3) + "," + (i%3) +" : "+ Time.time.ToString()); loopFixer = i; break; }
         }
-        yield break; //something else probably
+        yield break;
     }
 
+    IEnumerator WhatIfRunConsole(int number) //TODO - this
+    {
+        int startIndent = number % 3;
+        for (int i = number; i < slots.Count - (2 - startIndent); i += 3)
+        {
+            if (loopFixer > 0 && loopFixer > i && startIndent != loopFixer % 3) { i = (loopFixer - loopFixer % 3) + startIndent; loopFixer = 0; }
+
+            if (playerMovement.crashed) { break; }
+            slotValue slot = slots[i];
+            if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
+            if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }
+            if (startIndent == 2) { slot.slot.GetComponent<Image>().color = Color.magenta; }
+            if (slot.method != null)
+            {
+                DragNDrop blockScript = slot.method.GetComponent<DragNDrop>();
+                if (slot.method.CompareTag("IfStatement"))
+                {
+                    if (startIndent > 1) { break; } //don't allow nesting within nesting!
+                        yield return StartCoroutine("WhatIfRunConsole", (i + 3 + 1));
+                }
+                else if (slot.method.CompareTag("Loop"))
+                {
+                    if (startIndent > 1) { break; } //don't allow nesting within nesting!
+                    for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++)
+                    {
+                        if (playerMovement.crashed) { break; }
+                        yield return StartCoroutine("WhatIfRunConsole", (i + 3 + 1));
+                    }
+                }
+                else
+                {
+                    print("Doing nothing, as I am supposed to, sir! " + Time.time.ToString());
+                }
+            }
+            else if (startIndent > 0) { /*print("Method is null! " + "Looking at: " + (i / 3) + "," + (i % 3) + " : " + Time.time.ToString());*/ loopFixer = i; break; }
+        }
+        yield break;
+    }
 
 
     bool ifif(DragNDrop blockScript) {
