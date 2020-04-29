@@ -45,13 +45,42 @@ public class Console : MonoBehaviour
 
     public void OnBlockRecieved(GameObject block) {
         block.transform.SetParent(transform);
-        foreach (slotValue slut in slots) {
+        for (int i = 0; i < slots.Count; i++) {
+            slotValue slut = slots[i];
             if (block.transform.localPosition == slut.slot.transform.localPosition) {
                 slut.method = block;
+                if (i % 3 > 0) {
+                    for (int j = i-3; j > 0 - (2 - i % 3); j -= 3) {
+                        if (slots[j].method = null) {
+                            if (slots[j - 1].method != null && slots[j - 1].method.CompareTag("Loop"))
+                            {
+                                slots[j - 1].slot.GetComponent<Image>().color = Color.black;
+                                print("I'm in a loop!");
+                                break;
+                            }
+                        }
+                    }
+                }
+                break;
             }
         }
         block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, block.transform.position.z - 90);
+        
     }
+
+/*this i
+go up in rows until you hit null block
+go left once
+getblock comparetag
+	if 'if'
+		go up again until you hit null block
+		go left once
+		get blockcomparetag
+			if 'loop'
+				reduce cost of this by 15
+	if 'loop'
+		reduce cost of this by 10
+*/
 
     public void OnBlockRemoval(GameObject block) {
         foreach (slotValue slut in slots) {
@@ -62,6 +91,7 @@ public class Console : MonoBehaviour
             float blockY = Mathf.Round(block.transform.localPosition.y * 10f) / 10f;
             if (blockX == slotX && blockY == slotY) {
                 slut.method = null;
+                break;
             }
         }
         block.transform.SetParent(null);
@@ -165,7 +195,8 @@ public class Console : MonoBehaviour
                     print("Doing nothing, as I am supposed to, sir! " + Time.time.ToString());
                 }
             }
-            else if (startIndent > 0) { /*print("Method is null! " + "Looking at: " + (i / 3) + "," + (i % 3) + " : " + Time.time.ToString());*/ loopFixer = i; break; }
+            else if (startIndent > 0) { /*print("Method is null! " + "Looking at: " + (i / 3) + "," + (i % 3) + " : " + Time.time.ToString());*/
+    loopFixer = i; break; }
         }
         yield break;
     }
