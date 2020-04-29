@@ -6,14 +6,10 @@ using UnityEngine.UI;
 
 public class slotValue
 {
-    public int indentLvl;
-    public int row;
     public GameObject slot;
     public GameObject method;
 
-    public slotValue(int _indentLvl, int _row, GameObject _slot) {
-        indentLvl = _indentLvl;
-        row = _row;
+    public slotValue(GameObject _slot) {
         slot = _slot;
     }
 
@@ -40,11 +36,9 @@ public class Console : MonoBehaviour
             for (float j = -1.8f; j <= 1.8f; j += 1.8f) {
                 GameObject slot = Instantiate(slotPrefab);
                 slot.transform.SetParent(transform);
+                slot.transform.localScale = new Vector3(1.5f, 1, 1);
                 slot.transform.localPosition = new Vector3(j, (i * -1.4f), 0);
-                int indentLvl;
-                if (j < 0) indentLvl = 0; else if (j == 0) indentLvl = 1; else indentLvl = 2;
-                int row = i;
-                slots.Add(new slotValue(indentLvl, row, slot));
+                slots.Add(new slotValue(slot));
             }
         }
     }
