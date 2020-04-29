@@ -39,33 +39,51 @@ public class Console : MonoBehaviour
                 slot.transform.localScale = new Vector3(1.5f, 1, 1);
                 slot.transform.localPosition = new Vector3(j, (i * -1.4f), 0);
                 slots.Add(new slotValue(slot));
+                if (j != -1.8f) { slot.SetActive(false); }
             }
         }
     }
 
-    public void OnBlockRecieved(GameObject block) {
+    public void OnBlockRecieved(GameObject block) { //if loop placed : add new indented blocks
         block.transform.SetParent(transform);
-        for (int i = 0; i < slots.Count; i++) {
+        for (int i = 0; i < slots.Count; i++)
+        {
             slotValue slut = slots[i];
-            if (block.transform.localPosition == slut.slot.transform.localPosition) {
-                slut.method = block;
-                if (i % 3 > 0) {
-                    for (int j = i-3; j > 0 - (2 - i % 3); j -= 3) {
-                        if (slots[j].method = null) {
-                            if (slots[j - 1].method != null && slots[j - 1].method.CompareTag("Loop"))
+            if (block.transform.localPosition == slut.slot.transform.localPosition)
+            {
+                if (block.CompareTag("Loop") || block.CompareTag("IfStatement")) {
+                    slots[i + 4].slot.SetActive(true);
+                }
+                if (i % 3 > 0)
+                {
+                    for (int j = i - 3; j > 0 - (2 - i % 3); j -= 3)
+                    {
+                        if (slots[j].method == null)
+                        {
+                            if (slots[j - 1].method != null)
                             {
-                                slots[j - 1].slot.GetComponent<Image>().color = Color.black;
-                                print("I'm in a loop!");
-                                break;
+                                if (slots[j - 1].method.CompareTag("Loop"))
+                                {
+                                    print("I'm in a loop!");
+                                    break;
+                                }
+                                else if (slots[j - 1].method.CompareTag("IfStatement"))
+                                {
+                                    print("I'm in a if statement!");
+                                    break;
+                                }
+                                else break;
                             }
                         }
                     }
                 }
+                slut.method = block;
+                block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, block.transform.position.z - 90);
+                block.SetActive(false);
+                block.SetActive(true);
                 break;
             }
-        }
-        block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, block.transform.position.z - 90);
-        
+        }   
     }
 
 /*this i
@@ -94,6 +112,8 @@ getblock comparetag
                 break;
             }
         }
+        block.SetActive(false);
+        block.SetActive(true);
         block.transform.SetParent(null);
     }
 

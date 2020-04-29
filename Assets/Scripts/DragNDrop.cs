@@ -71,6 +71,7 @@ public class DragNDrop : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
+        if (hoveredSlot == collision) { hoveredSlot = null; }
         trasher = false;
     }
 
