@@ -7,7 +7,7 @@ public class gas_meter : MonoBehaviour
 {
     public TextMeshProUGUI gas_text;
     private int gas_total = 300;
-    private int gas = 300;
+    public int gas = 300;
 
 
     // used for testing the gas checker function

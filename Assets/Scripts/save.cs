@@ -1,15 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using System.IO;
 using SimpleJSON;
 
-public class levelWin : MonoBehaviour
+public class save : MonoBehaviour
 {
-    public string newLevelString;
-    //remember to build the scene in file -> build scene
-    private int highscore0;
+
+    //public string Name;
+    private int highscore0 = 12;
     private int highscore1 = 3;
     private int highscore2 = 45;
     private int highscore3 = 6;
@@ -17,21 +16,8 @@ public class levelWin : MonoBehaviour
     private int highscore5 = 9;
 
 
-    
-    private void OnTriggerEnter2D(Collider2D levelEnd)
-    {
-        //Application.LoadLevel("level 2")
-        if (levelEnd.gameObject.CompareTag("Player")) 
-        {
-            Save();
-            SceneManager.LoadScene(newLevelString);
-            Debug.Log("igothit");
-        }
-    }
     void Save()
     {
-        int highscore0 = GameObject.Find("gas meter").GetComponent<gas_meter>().gas;
-        Debug.Log("this is a derp" + highscore0);
         Debug.Log("I AM RUNNING");
         JSONObject playerJson = new JSONObject();
         //playerJson.Add("Name", Name);
@@ -53,5 +39,19 @@ public class levelWin : MonoBehaviour
         string path = Application.dataPath + "/highscore/PlayerSave.json";
         File.WriteAllText(path, playerJson.ToString());
 
+    }
+
+    
+
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown("left")) Save();
     }
 }
