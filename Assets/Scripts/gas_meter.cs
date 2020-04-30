@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using TMPro;
 
 public class gas_meter : MonoBehaviour
@@ -9,21 +7,7 @@ public class gas_meter : MonoBehaviour
     private int gas_total = 300;
     public int gas = 300;
 
-
-    // used for testing the gas checker function
-    /*void Start()
-    {
-        
-        for (int i = 0; i < 1; i++)
-        {
-
-            gasChecker(2);
-
-        }
-    }*/
-
-    //Could also change id to string so it correlates to loop, method or whatever 
-    public void gasChecker(int id) //id refers to if it is a loop, method or if-statement
+    public void gasChecker(int id)
     {
         switch (id)
         {
