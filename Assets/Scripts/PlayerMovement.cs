@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
     public Sprite car;
     Vector2 startPos;
     public bool driving;
-    public bool crashed;
 
 
     public float smoothTime;
@@ -200,17 +199,16 @@ public class PlayerMovement : MonoBehaviour
             anim.enabled = true;  //this is pure laziness to avoid the state machine
             AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
             Invoke("CarDedLul", clips[0].length); //call the function after the animation ends
-            crashed = true;
         }
     }
 
-    void CarDedLul() {
+    public void CarDedLul() {
         Animator anim = gameObject.GetComponent<Animator>();
         anim.enabled = false; //this is pure laziness to avoid the state machine
         gameObject.GetComponent<SpriteRenderer>().sprite = car;
         transform.position = startPos;
         driving = false;
-        crashed = false;
+        Cursor.lockState = CursorLockMode.None;
     }
 
     private void Start()

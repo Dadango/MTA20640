@@ -4562,7 +4562,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   car: {fileID: 21300000, guid: 3b63fc727f0b7e946924ee0c8a776492, type: 3}
   driving: 0
-  crashed: 0
   smoothTime: 0.1
 --- !u!61 &1533395054
 BoxCollider2D:
@@ -4908,6 +4907,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 1258152255572902861, guid: 1dc77ffd699abaa408c4515d15547c22,
     type: 3}
+  wmPrefab: {fileID: 6072280877063134830, guid: 9468f0a16a9c14843a6ba1016b09faab,
+    type: 3}
   gasMeter: {fileID: 2097968105}
   playerMovement: {fileID: 1533395053}
 --- !u!1 &1806750226
@@ -5239,27 +5240,39 @@ PrefabInstance:
     - target: {fileID: 7601908955910100394, guid: 16cdcc40b791bce449f3d9bec2b37030,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 0
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 7601908955910100394, guid: 16cdcc40b791bce449f3d9bec2b37030,
         type: 3}
       propertyPath: m_textInfo.spaceCount
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7601908955910100394, guid: 16cdcc40b791bce449f3d9bec2b37030,
         type: 3}
       propertyPath: m_textInfo.wordCount
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7601908955910100394, guid: 16cdcc40b791bce449f3d9bec2b37030,
         type: 3}
       propertyPath: m_textInfo.lineCount
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7601908955910100394, guid: 16cdcc40b791bce449f3d9bec2b37030,
         type: 3}
       propertyPath: m_textInfo.pageCount
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601908955910100394, guid: 16cdcc40b791bce449f3d9bec2b37030,
+        type: 3}
+      propertyPath: m_text
+      value: 'Gas
+
+        300/300'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7601908955910100394, guid: 16cdcc40b791bce449f3d9bec2b37030,
+        type: 3}
+      propertyPath: m_margin.z
+      value: -2.504556
       objectReference: {fileID: 0}
     - target: {fileID: 8860740561179598012, guid: 16cdcc40b791bce449f3d9bec2b37030,
         type: 3}

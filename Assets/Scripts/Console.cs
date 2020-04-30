@@ -19,6 +19,7 @@ public class Console : MonoBehaviour
 {
     private List<slotValue> slots = new List<slotValue>();
     public GameObject slotPrefab;
+    public GameObject wmPrefab;
     public gas_meter gasMeter;
     //public bool debugBtn;
 
@@ -27,6 +28,8 @@ public class Console : MonoBehaviour
 
     private bool running;
     int loopFixer = 0;
+    private float timeSinceDrive;
+
 
     // Start is called before the first frame update
     void Start()
@@ -150,17 +153,29 @@ public class Console : MonoBehaviour
 
     private void Update()
     {
-/*        if (debugBtn) {
-            debugBtn = false;
-            updateGas();
-        }*/
-
+        /*        if (debugBtn) {
+                    debugBtn = false;
+                    updateGas();
+                }*/
+        if (playerMovement.driving) {
+            timeSinceDrive = Time.time;
+        }
+        if (timeSinceDrive != 0 && Time.time > timeSinceDrive + 2.0f) {
+            playerMovement.CarDedLul();
+        }
         if (button_run.runButtonPH) {
             button_run.runButtonPH = false;
-            loopFixer = -1;
-            print("Starting console...");
-            StartCoroutine("RunConsole", 0);
-            //TO DO: disable everything else?
+            if (gasMeter.gas >= 0)
+            {
+                loopFixer = -1;
+                print("Starting console...");
+                Cursor.lockState = CursorLockMode.Locked;
+                StartCoroutine("RunConsole", 0);
+            }
+            else {
+                GameObject wm = Instantiate(wmPrefab, transform.parent.parent); //show error message
+                Destroy(wm, 3);
+            }
         }
     }
 
@@ -171,7 +186,6 @@ public class Console : MonoBehaviour
         int startIndent = number%3;
         for (int i = number; i < slots.Count-(2-startIndent); i += 3) {
             if (loopFixer > 0 && loopFixer > i && startIndent < loopFixer%3) { i = (loopFixer - loopFixer%3) + startIndent; loopFixer = 0; }
-            if (playerMovement.crashed) { break; }
             slotValue slot = slots[i];
             /*if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
             if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }  //debug colors
@@ -196,7 +210,6 @@ public class Console : MonoBehaviour
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
                     for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++)
                     {
-                        if (playerMovement.crashed) { break; }
                         print("loop entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
                         yield return StartCoroutine("RunConsole", (i + 3 + 1));
                     }
@@ -220,7 +233,6 @@ public class Console : MonoBehaviour
         {
             if (loopFixer > 0 && loopFixer > i && startIndent != loopFixer % 3) { i = (loopFixer - loopFixer % 3) + startIndent; loopFixer = 0; }
 
-            if (playerMovement.crashed) { break; }
             slotValue slot = slots[i];
             if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
             if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }
@@ -238,7 +250,6 @@ public class Console : MonoBehaviour
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
                     for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++)
                     {
-                        if (playerMovement.crashed) { break; }
                         yield return StartCoroutine("WhatIfRunConsole", (i + 3 + 1));
                     }
                 }

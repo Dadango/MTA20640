@@ -26,6 +26,7 @@ public class levelWin : MonoBehaviour
             Save();
             SceneManager.LoadScene(newLevelString);
             Debug.Log("igothit");
+            Cursor.lockState = CursorLockMode.None;
         }
     }
     void Save()
