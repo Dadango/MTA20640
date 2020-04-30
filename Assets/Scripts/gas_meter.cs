@@ -25,20 +25,24 @@ public class gas_meter : MonoBehaviour
         //Could also change id to string so it correlates to loop, method or whatever 
     public void gasChecker(int id) //id refers to if it is a loop, method or if-statement
     {
-        if (id == 0) // 0 is a method raw
+        switch (id)
         {
-            gas -= 20;
-            gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
-        }
-        else if(id == 1) // 1 is a method inside a loop
-        {
-            gas -= 10;
-            gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
-        }
-        else if(id == 2) // 2 is a method inside an if-statement
-        {
-            gas -= 15;
-            gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
+            case 0: //method raw
+                gas -= 20;
+                gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
+                break;
+            case 1: //method inside a loop
+                gas -= 10;
+                gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
+                break;
+            case 2: //method inside an if statement
+                gas -= 15;
+                gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
+                break;
+            case 3: //method inside an if statement inside a loop
+                gas -= 5;
+                gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
+                break;
         }
     }
 }

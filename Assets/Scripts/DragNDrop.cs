@@ -51,7 +51,7 @@ public class DragNDrop : MonoBehaviour
             transform.position = hoveredSlot.transform.position;
             hoveredSlot.gameObject.GetComponentInParent<Console>().BroadcastMessage("OnBlockRecieved", gameObject);
             following = false;
-            hoveredSlot = null; //temp
+            hoveredSlot = null;
         }
         else if (trasher) { GameObject.Destroy(gameObject); }
       }
@@ -61,7 +61,9 @@ public class DragNDrop : MonoBehaviour
         {
             if (hoveredSlot == null || (collision.transform.position - transform.position).magnitude < (hoveredSlot.transform.position - transform.position).magnitude)
             {
-                hoveredSlot = collision;
+                if (following) { 
+                   hoveredSlot = collision;
+                }
             }
         }
         else if (collision.CompareTag("TrashCan"))

@@ -20,8 +20,7 @@ public class Console : MonoBehaviour
     private List<slotValue> slots = new List<slotValue>();
     public GameObject slotPrefab;
     public gas_meter gasMeter;
-    public bool runButtonPH;
-    public bool resetButtonPH;
+    //public bool debugBtn;
 
     public PlayerMovement playerMovement;
     private Vector2 direction;
@@ -44,6 +43,61 @@ public class Console : MonoBehaviour
         }
     }
 
+    void updateGas()
+    {
+        List<bool> lastEntered = new List<bool>(); //since we have only two states (loop or if) bool is most efficient, albeit slightly less readable
+        for (int i = 0; i < slots.Count - (i % 3); i += 3)
+        {
+            slotValue slut = slots[i];
+            slut.slot.GetComponent<Image>().color = Color.black;
+            if (slut.method != null) { 
+                if (slut.method.CompareTag("Loop")) {
+                    if (slut.method.GetComponent<DragNDrop>().loopVar.text != "") { 
+                        if (int.Parse(slut.method.GetComponent<DragNDrop>().loopVar.text) > 1) {
+                            lastEntered.Add(true); //loops are truth
+                            i += 1;
+                            continue;
+                        }
+                    }
+                }
+                if ((slut.method.CompareTag("IfStatement"))) {
+                    lastEntered.Add(false); //conditionals are false
+                    i += 1;
+                    continue;
+                }
+            }
+            if (i % 3 != 0)
+            {
+                if (slut.method == null)
+                {
+                    i -= 4;
+                    lastEntered.RemoveAt(lastEntered.Count - 1);
+                    continue;
+                }
+                if (lastEntered.Count > 1)
+                {
+                    if (lastEntered[lastEntered.Count - 1] && !lastEntered[lastEntered.Count - 2] || lastEntered[lastEntered.Count - 2] && !lastEntered[lastEntered.Count - 1])
+                    {
+                        //if inside a loop inside an if or inside an if inside a loop
+                        gasMeter.gasChecker(3);
+                    }
+                }
+                else if (lastEntered[lastEntered.Count - 1])
+                {
+                    //inside a loop
+                    gasMeter.gasChecker(1);
+                }
+                else if (!lastEntered[lastEntered.Count - 1])
+                {
+                    //inside an if
+                    gasMeter.gasChecker(2);
+                }
+                else gasMeter.gasChecker(0);
+            }
+            else if (slut.method != null) { gasMeter.gasChecker(0); }
+        }
+    }
+
     public void OnBlockRecieved(GameObject block) { //if loop placed : add new indented blocks
         block.transform.SetParent(transform);
         for (int i = 0; i < slots.Count; i++)
@@ -51,54 +105,28 @@ public class Console : MonoBehaviour
             slotValue slut = slots[i];
             if (block.transform.localPosition == slut.slot.transform.localPosition)
             {
-                if (block.CompareTag("Loop") || block.CompareTag("IfStatement")) {
+                if (block.CompareTag("Loop") || block.CompareTag("IfStatement"))
+                {
                     slots[i + 4].slot.SetActive(true);
+                    slots[i + 3].slot.SetActive(true);
+                }
+                else {
+                    slots[i + 3].slot.SetActive(true);
                 }
                 if (i % 3 > 0)
                 {
-                    for (int j = i - 3; j > 0 - (2 - i % 3); j -= 3)
-                    {
-                        if (slots[j].method == null)
-                        {
-                            if (slots[j - 1].method != null)
-                            {
-                                if (slots[j - 1].method.CompareTag("Loop"))
-                                {
-                                    print("I'm in a loop!");
-                                    break;
-                                }
-                                else if (slots[j - 1].method.CompareTag("IfStatement"))
-                                {
-                                    print("I'm in a if statement!");
-                                    break;
-                                }
-                                else break;
-                            }
-                        }
-                    }
-                }
+                    slots[i - (i % 3)].slot.SetActive(false);
+                } 
                 slut.method = block;
                 block.transform.position = new Vector3(block.transform.position.x, block.transform.position.y, block.transform.position.z - 90);
                 block.SetActive(false);
                 block.SetActive(true);
+                updateGas();
                 break;
             }
         }   
     }
 
-/*this i
-go up in rows until you hit null block
-go left once
-getblock comparetag
-	if 'if'
-		go up again until you hit null block
-		go left once
-		get blockcomparetag
-			if 'loop'
-				reduce cost of this by 15
-	if 'loop'
-		reduce cost of this by 10
-*/
 
     public void OnBlockRemoval(GameObject block) {
         foreach (slotValue slut in slots) {
@@ -115,20 +143,22 @@ getblock comparetag
         block.SetActive(false);
         block.SetActive(true);
         block.transform.SetParent(null);
+        updateGas();
     }
 
     private void Update()
     {
+/*        if (debugBtn) {
+            debugBtn = false;
+            updateGas();
+        }*/
+
         if (button_run.runButtonPH) {
             button_run.runButtonPH = false;
             loopFixer = -1;
+            print("Starting console...");
             StartCoroutine("RunConsole", 0);
-
             //TO DO: disable everything else?
-        }
-        if (resetButtonPH) {
-            resetButtonPH = false;
-            ResetScene();
         }
     }
 
@@ -141,9 +171,9 @@ getblock comparetag
             if (loopFixer > 0 && loopFixer > i && startIndent < loopFixer%3) { i = (loopFixer - loopFixer%3) + startIndent; loopFixer = 0; }
             if (playerMovement.crashed) { break; }
             slotValue slot = slots[i];
-            if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
-            if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }
-            if (startIndent == 2) { slot.slot.GetComponent<Image>().color = Color.magenta; }
+            /*if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
+            if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }  //debug colors
+            if (startIndent == 2) { slot.slot.GetComponent<Image>().color = Color.magenta; }*/
             if (slot.method != null)
             {
                 DragNDrop blockScript = slot.method.GetComponent<DragNDrop>();
@@ -247,10 +277,6 @@ getblock comparetag
         GameObject inFront = inFrontRay.collider.gameObject;
         return ((inFront.CompareTag("Building") && blockScript.methodVar == 'b') || (inFront.CompareTag("RoadBlock") && blockScript.methodVar == 'r') || (blockScript.methodVar == 'e'));
         }
-
-    void ResetScene() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().path, LoadSceneMode.Single); //add "don't destroy on load" or change this, if fow is implemented
-    }
 
     private void OnDrawGizmos()
     {

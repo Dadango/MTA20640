@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Make u-turn
       objectReference: {fileID: 0}
+    - target: {fileID: 1003344714771308301, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
+        type: 3}
+      propertyPath: m_TagString
+      value: Method
+      objectReference: {fileID: 0}
     - target: {fileID: 8170301477355614502, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
         type: 3}
       propertyPath: m_text

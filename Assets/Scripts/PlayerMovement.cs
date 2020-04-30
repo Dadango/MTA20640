@@ -6,19 +6,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public Sprite car;
     Vector2 startPos;
-    //public Coroutine driving;
     public bool driving;
     public bool crashed;
-    Vector3 moveForward = new Vector3(1.0f, 0.0f);
-    Vector3 moveLeft = new Vector3(0.0f, 1.0f);
-    Vector3 moveRight = new Vector3(0.0f, -1.0f);
-    Vector3 moveBackward = new Vector3(-1.0f, 0.0f);
 
-    Vector3 currentPos = new Vector3();
-    Vector3 destinationForward = new Vector3();
-    Vector3 destinationLeft = new Vector3();
-    Vector3 destinationRight = new Vector3();
-    Vector3 destinationBackward = new Vector3();
 
     public float smoothTime;
     Vector3 velocity = Vector3.zero;
@@ -28,8 +18,8 @@ public class PlayerMovement : MonoBehaviour
         driving = true;
         if (Input.GetKeyDown("right"))
         {
-            currentPos = transform.position;
-            destinationForward = currentPos + moveForward;
+            Vector3 currentPos = transform.position;
+            Vector3 destinationForward = currentPos + new Vector3(1.0f, 0.0f);
             while (true)
             {
                 yield return new WaitForEndOfFrame();
@@ -47,8 +37,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKeyDown("left"))
         {
-            currentPos = transform.position;
-            destinationBackward = currentPos + moveBackward;
+            Vector3 currentPos = transform.position;
+            Vector3 destinationBackward = currentPos + new Vector3(-1.0f, 0.0f);
             while (true)
             {
                 yield return new WaitForEndOfFrame();
@@ -66,8 +56,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKeyDown("up"))
         {
-            currentPos = transform.position;
-            destinationLeft = currentPos + moveLeft;
+            Vector3 currentPos = transform.position;
+            Vector3 destinationLeft = currentPos + new Vector3(0.0f, 1.0f);
             if (transform.eulerAngles.z != 90.0f)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
@@ -85,8 +75,8 @@ public class PlayerMovement : MonoBehaviour
         }
         else if (Input.GetKeyDown("down"))
         {
-            currentPos = transform.position;
-            destinationRight = currentPos + moveRight;
+            Vector3 currentPos = transform.position;
+            Vector3 destinationRight = currentPos + new Vector3(0.0f, -1.0f);
             if (transform.eulerAngles.z != -90.0f)
             {
                 transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
@@ -109,8 +99,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DriveRight() {
         driving = true;
-        currentPos = transform.position;
-        destinationForward = currentPos + moveForward;
+        Vector3 currentPos = transform.position;
+        Vector3 destinationForward = currentPos + new Vector3(1.0f, 0.0f);
         while (true)
         {
             yield return new WaitForEndOfFrame();
@@ -133,8 +123,8 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DriveLeft()
     {
         driving = true;
-        currentPos = transform.position;
-        destinationBackward = currentPos + moveBackward;
+        Vector3 currentPos = transform.position;
+        Vector3 destinationBackward = currentPos + new Vector3(-1.0f, 0.0f);
         while (true)
         {
             yield return new WaitForEndOfFrame();
@@ -156,8 +146,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DriveUp() {
         driving = true;
-        currentPos = transform.position;
-        destinationLeft = currentPos + moveLeft;
+        Vector3 currentPos = transform.position;
+        Vector3 destinationLeft = currentPos + new Vector3(0.0f, 1.0f);
         if (transform.eulerAngles.z != 90.0f)
         {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
@@ -179,8 +169,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DriveDown() {
         driving = true;
-        currentPos = transform.position;
-        destinationRight = currentPos + moveRight;
+        Vector3 currentPos = transform.position;
+        Vector3 destinationRight = currentPos + new Vector3(0.0f, -1.0f);
         if (transform.eulerAngles.z != -90.0f)
         {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);

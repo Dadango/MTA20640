@@ -11,6 +11,7 @@ TagManager:
   - RoadBlock
   - IfStatement
   - roadblock
+  - Method
   layers:
   - Default
   - TransparentFX
