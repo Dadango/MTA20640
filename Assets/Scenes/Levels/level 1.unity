@@ -4093,7 +4093,7 @@ PrefabInstance:
     - target: {fileID: 4077270464538195812, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}
       propertyPath: newLevelString
-      value: level 2
+      value: Leaderboard
       objectReference: {fileID: 0}
     - target: {fileID: 4077270464538195812, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}

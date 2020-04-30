@@ -14,6 +14,7 @@ public class save : MonoBehaviour
     private int highscore3 = 6;
     private int highscore4 = 78;
     private int highscore5 = 9;
+   
 
 
     void Save()

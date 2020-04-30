@@ -15,6 +15,7 @@ public class loader : MonoBehaviour
     public TextMeshProUGUI fifthPlace;
     public TextMeshProUGUI sixthPlace;
     public int[] highscore = new int[6];
+    static private int totalloader = 0;
 
     //public string Name;
     /*public int highscore0;
@@ -39,8 +40,9 @@ public class loader : MonoBehaviour
 
     int[] Load()
     {
+        
         Debug.Log("I AM LOADING");
-        string path = Application.dataPath + "/highscore/PlayerSave.json";
+        string path = Application.dataPath + "/highscore/PlayerSave" + totalloader + ".json";
         string jsonString = File.ReadAllText(path);
         JSONObject playerJson = (JSONObject)JSON.Parse(jsonString);
         //SET VALUES
@@ -52,6 +54,7 @@ public class loader : MonoBehaviour
         highscore[3] = playerJson["highscore3"];
         highscore[4] = playerJson["highscore4"];
         highscore[5] = playerJson["highscore5"];
+        GameObject.Find("level_x").GetComponent<TextMeshProUGUI>().text = playerJson["level"];
         //int[] highscore = {highscore0, highscore1, highscore2, highscore3, highscore4, highscore5};
         //POSITION
         /*transform.position = new Vector3(
@@ -59,9 +62,10 @@ public class loader : MonoBehaviour
             playerJson["Position"].AsArray[1],
             playerJson["Position"].AsArray[2]
         );*/
+        totalloader++;
         return highscore;
     }
-    void Update()
+    void Start()
     {
         //if (Input.GetKeyDown("right"))
         //{

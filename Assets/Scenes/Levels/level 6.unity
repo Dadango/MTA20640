@@ -729,7 +729,7 @@ PrefabInstance:
     - target: {fileID: 4077270464538195812, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}
       propertyPath: newLevelString
-      value: level 1
+      value: Leaderboard
       objectReference: {fileID: 0}
     - target: {fileID: 8181365012551345328, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}
@@ -1496,8 +1496,6 @@ MonoBehaviour:
   slotPrefab: {fileID: 1258152255572902861, guid: 1dc77ffd699abaa408c4515d15547c22,
     type: 3}
   gasMeter: {fileID: 0}
-  runButtonPH: 0
-  resetButtonPH: 0
   playerMovement: {fileID: 1272827404}
 --- !u!1 &582044742
 GameObject:

@@ -7140,9 +7140,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 1258152255572902861, guid: 1dc77ffd699abaa408c4515d15547c22,
     type: 3}
-  gasMeter: {fileID: 0}
-  runButtonPH: 0
-  resetButtonPH: 0
+  gasMeter: {fileID: 1636366612}
   playerMovement: {fileID: 1339261847}
 --- !u!1 &968101383
 GameObject:
@@ -8775,7 +8773,7 @@ PrefabInstance:
     - target: {fileID: 4077270464538195812, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}
       propertyPath: newLevelString
-      value: level 3
+      value: Leaderboard
       objectReference: {fileID: 0}
     - target: {fileID: 8181365012551345328, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}
@@ -9500,6 +9498,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1590643508}
   m_CullTransparentMesh: 0
+--- !u!114 &1636366612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 963470388556735029, guid: 16cdcc40b791bce449f3d9bec2b37030,
+    type: 3}
+  m_PrefabInstance: {fileID: 1763519102}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b06528bcf50afbd4b91eef7a5345d6c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1636676789
 GameObject:
   m_ObjectHideFlags: 0
@@ -9890,7 +9900,7 @@ PrefabInstance:
     - target: {fileID: 4910500878892367855, guid: 16cdcc40b791bce449f3d9bec2b37030,
         type: 3}
       propertyPath: m_Name
-      value: gas meter (1)
+      value: gas meter
       objectReference: {fileID: 0}
     - target: {fileID: 7269206747747653660, guid: 16cdcc40b791bce449f3d9bec2b37030,
         type: 3}
