@@ -22,7 +22,7 @@ public class gas_meter : MonoBehaviour
         }
     }*/
 
-        //Could also change id to string so it correlates to loop, method or whatever 
+    //Could also change id to string so it correlates to loop, method or whatever 
     public void gasChecker(int id) //id refers to if it is a loop, method or if-statement
     {
         switch (id)
@@ -45,4 +45,10 @@ public class gas_meter : MonoBehaviour
                 break;
         }
     }
+
+    public void gasReset() {
+        gas = gas_total;
+        gas_text.text = "Gas" + "\n" + gas + "/" + gas_total;
+    }
+
 }

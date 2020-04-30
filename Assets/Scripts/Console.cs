@@ -45,11 +45,12 @@ public class Console : MonoBehaviour
 
     void updateGas()
     {
+        gasMeter.gasReset();
         List<bool> lastEntered = new List<bool>(); //since we have only two states (loop or if) bool is most efficient, albeit slightly less readable
         for (int i = 0; i < slots.Count - (i % 3); i += 3)
         {
             slotValue slut = slots[i];
-            slut.slot.GetComponent<Image>().color = Color.black;
+            //slut.slot.GetComponent<Image>().color = Color.black;
             if (slut.method != null) { 
                 if (slut.method.CompareTag("Loop")) {
                     if (slut.method.GetComponent<DragNDrop>().loopVar.text != "") { 
