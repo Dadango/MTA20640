@@ -27,6 +27,11 @@ PrefabInstance:
       propertyPath: methodVar
       value: 101
       objectReference: {fileID: 0}
+    - target: {fileID: 3083378798166451331, guid: 58d2f584bde091a4f854653728bdf483,
+        type: 3}
+      propertyPath: leeway
+      value: 0.005
+      objectReference: {fileID: 0}
     - target: {fileID: 3678720290965644162, guid: 58d2f584bde091a4f854653728bdf483,
         type: 3}
       propertyPath: m_LocalScale.x

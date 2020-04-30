@@ -81,9 +81,10 @@ public class Console : MonoBehaviour
                     {
                         //if inside a loop inside an if or inside an if inside a loop
                         gasMeter.gasChecker(3);
+                        continue;
                     }
                 }
-                else if (lastEntered[lastEntered.Count - 1])
+                if (lastEntered[lastEntered.Count - 1])
                 {
                     //inside a loop
                     gasMeter.gasChecker(1);

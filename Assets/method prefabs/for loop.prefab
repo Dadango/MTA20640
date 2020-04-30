@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  leeway: 0.05
+  leeway: 0.005
   methodName: {fileID: 1687508605284190984}
   loopVar: {fileID: 1687508606312147869}
   methodVar: 0
