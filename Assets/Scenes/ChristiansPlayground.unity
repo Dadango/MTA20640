@@ -2817,8 +2817,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d40be0c7fcbad64f96dea66237e8d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 956278525}
-  parent: {fileID: 0}
   drive_up: {fileID: 2085572621575812444, guid: 9f95bbe9af18e6e44ba05101772e819c,
     type: 3}
   drive_left: {fileID: 1003344714771308301, guid: 3854749862c70504e86b25f6f92ee692,
@@ -2826,8 +2824,6 @@ MonoBehaviour:
   drive_right: {fileID: 1003344714771308301, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
     type: 3}
   drive_down: {fileID: 4674698350610383692, guid: 58d2f584bde091a4f854653728bdf483,
-    type: 3}
-  make_u_turn: {fileID: 4368784913643322509, guid: 985b1ecadeaf86149b3fa1df18c15dbd,
     type: 3}
 --- !u!114 &956278528
 MonoBehaviour:
@@ -2885,9 +2881,7 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: Drive right
       m_Image: {fileID: 0}
-    - m_Text: Make down
-      m_Image: {fileID: 0}
-    - m_Text: Make u-turn
+    - m_Text: Drive down
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3139,15 +3133,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0315c63e8d262b448d504c442e4ba5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1090153242}
-  parent: {fileID: 0}
   building_ahead: {fileID: 4458183680421602828, guid: b0259d8b235e6774d85fc45afd3d4dd4,
     type: 3}
   roadblock_ahead: {fileID: 7676217530300787238, guid: f881fd286903dc64b981e5e189be3d73,
     type: 3}
-  end_of_road: {fileID: -794455699844205130, guid: c9dbc816a864798498292e3da9c8ce30,
-    type: 3}
-  nothing: {fileID: 0}
 --- !u!114 &1090153246
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5005,8 +4994,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: For-loop
       m_Image: {fileID: 0}
-    - m_Text: while loop
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -5069,15 +5056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0085dc4b40cda94bb6c1a7b2c60cc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1806750226}
-  parent: {fileID: 0}
   for_loop: {fileID: 1687508606096089386, guid: 8eaf56e27f66303409ea36243e1f4b37,
-    type: 3}
-  while_loop: {fileID: 812977363250311930, guid: 9dec995e230187e429584f394f95c175,
-    type: 3}
-  do_while_loop: {fileID: 3501355749042844556, guid: 5f9cc2f2643675541ac1d71171753afb,
-    type: 3}
-  for_each_loop: {fileID: 2464148836194047032, guid: a473444a87cb6f8429de3ce2a43a0aa6,
     type: 3}
 --- !u!1 &1831273289
 GameObject:
