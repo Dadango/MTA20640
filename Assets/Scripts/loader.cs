@@ -14,63 +14,62 @@ public class loader : MonoBehaviour
     public TextMeshProUGUI fourthPlace;
     public TextMeshProUGUI fifthPlace;
     public TextMeshProUGUI sixthPlace;
-    public int[] highscore = new int[6];
     static private int totalloader = 0;
 
-    //public string Name;
-    /*public int highscore0;
-    public float highscore1;
-    public int highscore2;
-    public int highscore3;
-    public int highscore4;
-    public int highscore5;*/
 
-    void leaderboard(int[] highscore)
+    void leaderboard(Highscore[] highscores)
     {
-        Array.Sort(highscore);
-        Array.Reverse(highscore);
-        firstPlace.text = "1. " + highscore[0].ToString();
-        secondPlace.text = "2. " + highscore[1].ToString();
-        thirdPlace.text = "3. " + highscore[2].ToString();
-        fourthPlace.text = "4. " + highscore[3].ToString();
-        fifthPlace.text = "5. " + highscore[4].ToString();
-        sixthPlace.text = "6. " + highscore[5].ToString();
-          
+        Array.Sort(highscores);
+        Array.Reverse(highscores);
+        firstPlace.text = "1. " + highscores[0].getName() + " " + highscores[0].getScore();
+        secondPlace.text = "2. " + highscores[1].getName() + " " + highscores[1].getScore();
+        thirdPlace.text = "3. " + highscores[2].getName() + " " + highscores[2].getScore();
+        fourthPlace.text = "4. " + highscores[3].getName() + " " + highscores[3].getScore();
+        fifthPlace.text = "5. " + highscores[4].getName() + " " + highscores[4].getScore();
+        sixthPlace.text = "6. " + highscores[5].getName() + " " + highscores[5].getScore();
     }
 
-    int[] Load()
+    Highscore[] Load()
     {
-        
+
         Debug.Log("I AM LOADING");
         string path = Application.dataPath + "/highscore/PlayerSave" + totalloader + ".json";
         string jsonString = File.ReadAllText(path);
         JSONObject playerJson = (JSONObject)JSON.Parse(jsonString);
-        //SET VALUES
-        //Name = playerJson["Name"];
-        int[] highscore = new int[6];
-        highscore[0] = playerJson["highscore0"];
-        highscore[1] = playerJson["highscore1"];
-        highscore[2] = playerJson["highscore2"];
-        highscore[3] = playerJson["highscore3"];
-        highscore[4] = playerJson["highscore4"];
-        highscore[5] = playerJson["highscore5"];
+
+        string[] highscoreN = new string[6];
+        int[] highscoreS = new int[6];
+
+        highscoreN[0] = playerJson["highscoreN0"];
+        highscoreN[1] = playerJson["highscoreN1"];
+        highscoreN[2] = playerJson["highscoreN2"];
+        highscoreN[3] = playerJson["highscoreN3"];
+        highscoreN[4] = playerJson["highscoreN4"];
+        highscoreN[5] = playerJson["highscoreN5"];
+
+
+        highscoreS[0] = playerJson["highscoreS0"];
+        highscoreS[1] = playerJson["highscoreS1"];
+        highscoreS[2] = playerJson["highscoreS2"];
+        highscoreS[3] = playerJson["highscoreS3"];
+        highscoreS[4] = playerJson["highscoreS4"];
+        highscoreS[5] = playerJson["highscoreS5"];
+
+        Highscore[] highscores = new Highscore[6];
+        for (int i = 0; i < 6; i++)
+        {
+            highscores[i] = new Highscore(highscoreN[i], highscoreS[i]);
+        }
+
         GameObject.Find("level_x").GetComponent<TextMeshProUGUI>().text = playerJson["level"];
-        //int[] highscore = {highscore0, highscore1, highscore2, highscore3, highscore4, highscore5};
-        //POSITION
-        /*transform.position = new Vector3(
-            playerJson["Position"].AsArray[0],
-            playerJson["Position"].AsArray[1],
-            playerJson["Position"].AsArray[2]
-        );*/
+
         totalloader++;
-        return highscore;
+        return highscores;
     }
     void Start()
     {
-        //if (Input.GetKeyDown("right"))
-        //{
-            highscore = Load();
-            leaderboard(highscore);
-        //}
+        leaderboard(Load());
     }
+    
 }
+
