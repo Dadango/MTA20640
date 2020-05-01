@@ -200,10 +200,10 @@ public class PlayerMovement : MonoBehaviour
             AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
             Invoke("CarDedLul", clips[0].length); //call the function after the animation ends
         }
-        /*else if (collision.CompareTag("Finish"))
+        else if (collision.CompareTag("Finish"))
         {
             collision.gameObject.GetComponent<levelWin>().BroadcastMessage("Save");
-        }*/
+        }
     }
 
     public void CarDedLul() {
@@ -223,9 +223,9 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if ((Input.GetKeyDown("down") || Input.GetKeyDown("up") || Input.GetKeyDown("right") || Input.GetKeyDown("left")) && driving == false)
+        /*if ((Input.GetKeyDown("down") || Input.GetKeyDown("up") || Input.GetKeyDown("right") || Input.GetKeyDown("left")) && driving == false)
         {
             StartCoroutine(Move());
-        }
+        }*/
     }
 }

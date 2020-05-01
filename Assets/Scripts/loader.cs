@@ -33,7 +33,7 @@ public class loader : MonoBehaviour
     {
 
         Debug.Log("I AM LOADING");
-        string path = Application.dataPath + "/highscore/PlayerSave" + totalloader + ".json";
+        string path = Application.dataPath + "/highscores/PlayerSave" + totalloader + ".json";
         string jsonString = File.ReadAllText(path);
         JSONObject playerJson = (JSONObject)JSON.Parse(jsonString);
 

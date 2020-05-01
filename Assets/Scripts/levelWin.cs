@@ -38,10 +38,6 @@ public class levelWin : MonoBehaviour
     //remember to build the scene in file -> build scene
     static public int totalsaves = 0;
 
-    private void OnTriggerEnter2D(Collider2D levelEnd)
-    {   
-        Save();  
-    }
     void Save()
     {
         JSONObject playerJson = new JSONObject();
@@ -63,7 +59,7 @@ public class levelWin : MonoBehaviour
 
         playerJson.Add("level", SceneManager.GetActiveScene().name);
 
-        string path = Application.dataPath + "/highscore/PlayerSave" + +totalsaves + ".json";
+        string path = Application.dataPath + "/highscores/PlayerSave" + +totalsaves + ".json";
         Debug.Log("first one" + totalsaves);
         totalsaves++;
         Debug.Log("first 2" + totalsaves);
