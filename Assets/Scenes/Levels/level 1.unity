@@ -882,15 +882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0085dc4b40cda94bb6c1a7b2c60cc59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 214791529}
-  parent: {fileID: 0}
   for_loop: {fileID: 1687508606096089386, guid: 8eaf56e27f66303409ea36243e1f4b37,
-    type: 3}
-  while_loop: {fileID: 812977363250311930, guid: ec656c347fe9b8648a0e3ffbe310d5f5,
-    type: 3}
-  do_while_loop: {fileID: 3501355749042844556, guid: 5f9cc2f2643675541ac1d71171753afb,
-    type: 3}
-  for_each_loop: {fileID: 2464148836194047032, guid: a473444a87cb6f8429de3ce2a43a0aa6,
     type: 3}
 --- !u!114 &214791532
 MonoBehaviour:
@@ -1895,7 +1887,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 486298585}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.89, y: -3.74, z: 0}
+  m_LocalPosition: {x: 1.101, y: -3.74, z: 0}
   m_LocalScale: {x: 1, y: 3.1878128, z: 1}
   m_Children: []
   m_Father: {fileID: 1320036848}
@@ -2704,8 +2696,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d40be0c7fcbad64f96dea66237e8d61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 717672967}
-  parent: {fileID: 0}
   drive_up: {fileID: 2085572621575812444, guid: 9f95bbe9af18e6e44ba05101772e819c,
     type: 3}
   drive_left: {fileID: 1003344714771308301, guid: 3854749862c70504e86b25f6f92ee692,
@@ -2713,8 +2703,6 @@ MonoBehaviour:
   drive_right: {fileID: 1003344714771308301, guid: 4f0bb3d7fc3471b4da4a97a06e6e51dc,
     type: 3}
   drive_down: {fileID: 4674698350610383692, guid: 58d2f584bde091a4f854653728bdf483,
-    type: 3}
-  make_u_turn: {fileID: 4368784913643322509, guid: 985b1ecadeaf86149b3fa1df18c15dbd,
     type: 3}
 --- !u!114 &717672970
 MonoBehaviour:
@@ -4085,10 +4073,35 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 600418805600650161, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 600418805600650161, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: 0.041662693
+      objectReference: {fileID: 0}
+    - target: {fileID: 600418805600650161, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 0.85954857
+      objectReference: {fileID: 0}
     - target: {fileID: 3308410609904470198, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}
       propertyPath: m_Name
       value: finish line
+      objectReference: {fileID: 0}
+    - target: {fileID: 3308410609904470198, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
+        type: 3}
+      propertyPath: m_TagString
+      value: Finish
+      objectReference: {fileID: 0}
+    - target: {fileID: 3308410609904470198, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
+        type: 3}
+      propertyPath: m_Layer
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4077270464538195812, guid: dd9627b374f6ddb47a6a0ba0cc65c0ed,
         type: 3}
@@ -4501,15 +4514,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0315c63e8d262b448d504c442e4ba5f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  button: {fileID: 1174400315}
-  parent: {fileID: 0}
   building_ahead: {fileID: 4458183680421602828, guid: b0259d8b235e6774d85fc45afd3d4dd4,
     type: 3}
   roadblock_ahead: {fileID: 7676217530300787238, guid: f881fd286903dc64b981e5e189be3d73,
     type: 3}
-  end_of_road: {fileID: -794455699844205130, guid: c9dbc816a864798498292e3da9c8ce30,
-    type: 3}
-  nothing: {fileID: 0}
 --- !u!114 &1174400318
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5778,7 +5786,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   car: {fileID: 21300000, guid: 3b63fc727f0b7e946924ee0c8a776492, type: 3}
   driving: 0
-  crashed: 0
   smoothTime: 0.1
 --- !u!212 &1532719971
 SpriteRenderer:
@@ -9977,6 +9984,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 1258152255572902861, guid: 1dc77ffd699abaa408c4515d15547c22,
     type: 3}
+  wmPrefab: {fileID: 0}
   gasMeter: {fileID: 215842467}
   playerMovement: {fileID: 1532719970}
 --- !u!1 &2090397452

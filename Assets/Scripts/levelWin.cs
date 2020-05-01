@@ -39,13 +39,8 @@ public class levelWin : MonoBehaviour
     static public int totalsaves = 0;
 
     private void OnTriggerEnter2D(Collider2D levelEnd)
-    {
-        if (levelEnd.gameObject.CompareTag("Player"))
-        {
-            Save();
-            SceneManager.LoadScene(newLevelString);
-            Cursor.lockState = CursorLockMode.None;
-        }
+    {   
+        Save();  
     }
     void Save()
     {
@@ -73,6 +68,7 @@ public class levelWin : MonoBehaviour
         totalsaves++;
         Debug.Log("first 2" + totalsaves);
         File.WriteAllText(path, playerJson.ToString());
-
+        Cursor.lockState = CursorLockMode.None;
+        SceneManager.LoadScene(newLevelString);
     }
 }

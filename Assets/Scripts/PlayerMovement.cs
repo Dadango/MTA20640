@@ -200,6 +200,10 @@ public class PlayerMovement : MonoBehaviour
             AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;
             Invoke("CarDedLul", clips[0].length); //call the function after the animation ends
         }
+        /*else if (collision.CompareTag("Finish"))
+        {
+            collision.gameObject.GetComponent<levelWin>().BroadcastMessage("Save");
+        }*/
     }
 
     public void CarDedLul() {
