@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
     public Sprite car;
     Vector2 startPos;
     public bool driving;
-
+    public bool carStalled;
 
     public float smoothTime;
     Vector3 velocity = Vector3.zero;
@@ -98,7 +98,8 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DriveRight() {
         driving = true;
-        Vector3 currentPos = transform.position;
+        carStalled = true;
+    Vector3 currentPos = transform.position;
         Vector3 destinationForward = currentPos + new Vector3(1.0f, 0.0f);
         while (true)
         {
@@ -122,6 +123,7 @@ public class PlayerMovement : MonoBehaviour
     IEnumerator DriveLeft()
     {
         driving = true;
+        carStalled = true;
         Vector3 currentPos = transform.position;
         Vector3 destinationBackward = currentPos + new Vector3(-1.0f, 0.0f);
         while (true)
@@ -145,6 +147,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DriveUp() {
         driving = true;
+        carStalled = true;
         Vector3 currentPos = transform.position;
         Vector3 destinationLeft = currentPos + new Vector3(0.0f, 1.0f);
         if (transform.eulerAngles.z != 90.0f)
@@ -168,6 +171,7 @@ public class PlayerMovement : MonoBehaviour
 
     IEnumerator DriveDown() {
         driving = true;
+        carStalled = true;
         Vector3 currentPos = transform.position;
         Vector3 destinationRight = currentPos + new Vector3(0.0f, -1.0f);
         if (transform.eulerAngles.z != -90.0f)

@@ -204,7 +204,8 @@ public class Console : MonoBehaviour
         }
         if (timeSinceDrive != 0 && Time.time > timeSinceDrive + 2.0f) {
             playerMovement.CarDedLul();
-            Logger.writeString("Car stalled");
+            if (playerMovement.carStalled) { Logger.writeString("Car stalled"); playerMovement.carStalled = false; }
+            
         }
         if (button_run.runButtonPH) {
             button_run.runButtonPH = false;
