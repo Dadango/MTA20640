@@ -195,6 +195,7 @@ public class PlayerMovement : MonoBehaviour
         {
             StopAllCoroutines();
             Debug.Log("Car hit a building");
+            Logger.writeString("Car hit a building : " + Time.time );
             Animator anim = gameObject.GetComponent<Animator>();
             anim.enabled = true;  //this is pure laziness to avoid the state machine
             AnimationClip[] clips = anim.runtimeAnimatorController.animationClips;

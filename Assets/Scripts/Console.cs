@@ -128,6 +128,7 @@ public class Console : MonoBehaviour
                 block.SetActive(false);
                 block.SetActive(true);
                 updateGas();
+                Logger.writeString("New block input to console in slot " + i + " of type " + block.name + " : " + Time.time);
                 break;
             }
         }   
@@ -135,6 +136,7 @@ public class Console : MonoBehaviour
 
 
     public void OnBlockRemoval(GameObject block) {
+        int loggerCount = 0;
         foreach (slotValue slut in slots) {
             Vector3 slotPos = slut.slot.transform.localPosition;
             float slotX = Mathf.Round(slotPos.x * 10f) / 10f; //remove everything after the first decimal
@@ -145,11 +147,14 @@ public class Console : MonoBehaviour
                 slut.method = null;
                 break;
             }
+            loggerCount++;
         }
         block.SetActive(false);
         block.SetActive(true);
         block.transform.SetParent(null);
         updateGas();
+        Logger.writeString("Block removed from slot " + loggerCount + " of type " + block.name + " : " + Time.time);
+
     }
 
     private void Update()
@@ -163,6 +168,7 @@ public class Console : MonoBehaviour
         }
         if (timeSinceDrive != 0 && Time.time > timeSinceDrive + 2.0f) {
             playerMovement.CarDedLul();
+            Logger.writeString("Car stalled : " + Time.time);
         }
         if (button_run.runButtonPH) {
             button_run.runButtonPH = false;
@@ -170,12 +176,14 @@ public class Console : MonoBehaviour
             {
                 loopFixer = -1;
                 print("Starting console...");
+                Logger.writeString("Console is run : " + Time.time);
                 Cursor.lockState = CursorLockMode.Locked;
                 StartCoroutine("RunConsole", 0);
             }
             else {
                 GameObject wm = Instantiate(wmPrefab, transform.parent.parent); //show error message
                 Destroy(wm, 3);
+                Logger.writeString("User attempted execution of console without sufficient gas : " + Time.time);
             }
         }
     }

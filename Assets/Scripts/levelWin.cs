@@ -37,12 +37,13 @@ public class levelWin : MonoBehaviour
     public string newLevelString;
     //remember to build the scene in file -> build scene
     static public int totalsaves = 0;
-
     void Save()
     {
+        int gas = GameObject.Find("gas meter").GetComponent<gas_meter>().gas;
+        Logger.writeString("User has completed level: " + SceneManager.GetActiveScene().name + " with a score of " + gas + " : " + Time.time);
         JSONObject playerJson = new JSONObject();
         List<Highscore> highscores = new List<Highscore>();
-        highscores.Add(new Highscore("YOU", GameObject.Find("gas meter").GetComponent<gas_meter>().gas));
+        highscores.Add(new Highscore("YOU", gas));
         highscores.Add(new Highscore("ABC", 150));
         highscores.Add(new Highscore("ABE", 160));
         highscores.Add(new Highscore("DCE", 170));
