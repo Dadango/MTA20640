@@ -149,7 +149,7 @@ public class Console : MonoBehaviour
                 block.SetActive(false);
                 block.SetActive(true);
                 updateGas();
-                Logger.writeString("New block input to console in slot " + i + " of type " + block.name + " : " + Time.time);
+                Logger.writeString("New block input to console in slot " + i + " of type " + block.name);
                 break;
             }
         }   
@@ -174,7 +174,7 @@ public class Console : MonoBehaviour
         block.SetActive(true);
         block.transform.SetParent(null);
         updateGas();
-        Logger.writeString("Block removed from slot " + loggerCount + " of type " + block.name + " : " + Time.time);
+        Logger.writeString("Block removed from slot " + loggerCount + " of type " + block.name);
 
     }
 
@@ -189,7 +189,7 @@ public class Console : MonoBehaviour
         }
         if (timeSinceDrive != 0 && Time.time > timeSinceDrive + 2.0f) {
             playerMovement.CarDedLul();
-            Logger.writeString("Car stalled : " + Time.time);
+            Logger.writeString("Car stalled");
         }
         if (button_run.runButtonPH) {
             button_run.runButtonPH = false;
@@ -197,14 +197,14 @@ public class Console : MonoBehaviour
             {
                 loopFixer = -1;
                 print("Starting console...");
-                Logger.writeString("Console is run : " + Time.time);
+                Logger.writeString("Console is run");
                 Cursor.lockState = CursorLockMode.Locked;
                 StartCoroutine("RunConsole", 0);
             }
             else {
                 GameObject wm = Instantiate(wmPrefab, transform.parent.parent); //show error message
                 Destroy(wm, 3);
-                Logger.writeString("User attempted execution of console without sufficient gas : " + Time.time);
+                Logger.writeString("User attempted execution of console without sufficient gas");
             }
         }
     }

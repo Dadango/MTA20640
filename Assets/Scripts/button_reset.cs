@@ -15,7 +15,7 @@ public class button_reset : MonoBehaviour
 
     void Reset()
     {
-        Logger.writeString("User reset the level: " + SceneManager.GetActiveScene().name + " : " + Time.time);
+        Logger.writeString("User reset the level: " + SceneManager.GetActiveScene().name);
         SceneManager.LoadScene(SceneManager.GetActiveScene().path, LoadSceneMode.Single);
     }
 }

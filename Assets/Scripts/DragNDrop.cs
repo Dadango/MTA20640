@@ -22,7 +22,7 @@ public class DragNDrop : MonoBehaviour
         following = true;
         hoveredSlot = null;
         leeway += 10;
-        Logger.writeString("User has created a new block of type: " + gameObject.name + " : " + Time.time);
+        Logger.writeString("User has created a new block of type: " + gameObject.name);
     }
 
     // Update is called once per frame
@@ -51,7 +51,7 @@ public class DragNDrop : MonoBehaviour
             following = false;
             hoveredSlot = null;
         }
-        else if (trasher) { GameObject.Destroy(gameObject); Logger.writeString("User deleted a block with the trash can : " + Time.time); }
+        else if (trasher) { GameObject.Destroy(gameObject); Logger.writeString("User deleted a block with the trash can"); }
       }
     private void OnTriggerEnter2D(Collider2D collision)
     {
