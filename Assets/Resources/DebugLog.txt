@@ -1,0 +1,74 @@
+User has created a new block of type: for loop(Clone) : 1,043617
+User has created a new block of type: for loop(Clone) : 1,515615
+New block input to console in slot 0 of type for loop(Clone) : 2,14829
+User has created a new block of type: Drive right(Clone) : 6,844577
+New block input to console in slot 4 of type Drive right(Clone) : 7,260796
+User has created a new block of type: for loop(Clone) : 8,355963
+New block input to console in slot 6 of type for loop(Clone) : 8,833417
+User has created a new block of type: Drive up(Clone) : 11,2431
+New block input to console in slot 10 of type Drive up(Clone) : 11,80577
+User has created a new block of type: for loop(Clone) : 15,10451
+New block input to console in slot 12 of type for loop(Clone) : 15,77715
+User has created a new block of type: Drive right(Clone) : 18,09306
+New block input to console in slot 16 of type Drive right(Clone) : 18,5577
+User has created a new block of type: for loop(Clone) : 22,6319
+New block input to console in slot 18 of type for loop(Clone) : 23,12752
+User has created a new block of type: Drive down(Clone) : 28,16905
+New block input to console in slot 22 of type Drive down(Clone) : 28,90372
+User has created a new block of type: for loop(Clone) : 30,40754
+New block input to console in slot 24 of type for loop(Clone) : 30,88355
+User has created a new block of type: Drive right(Clone) : 33,89752
+New block input to console in slot 28 of type Drive right(Clone) : 34,44379
+Console is run : 35,0981
+User has completed level: level 1 with a score of 250 : 38,66
+User has created a new block of type: for loop(Clone) : 41,45233
+New block input to console in slot 0 of type for loop(Clone) : 42,10263
+User has created a new block of type: Drive up(Clone) : 45,93081
+New block input to console in slot 4 of type Drive up(Clone) : 46,80396
+Block removed from slot 4 of type Drive up(Clone) : 48,23833
+New block input to console in slot 6 of type Drive up(Clone) : 48,70599
+Block removed from slot 6 of type Drive up(Clone) : 49,90998
+New block input to console in slot 9 of type Drive up(Clone) : 50,21167
+User has created a new block of type: Drive right(Clone) : 51,82196
+New block input to console in slot 4 of type Drive right(Clone) : 52,30285
+User has created a new block of type: for loop(Clone) : 54,85144
+New block input to console in slot 6 of type for loop(Clone) : 55,64569
+Block removed from slot 9 of type Drive up(Clone) : 57,99625
+New block input to console in slot 10 of type Drive up(Clone) : 58,30469
+User has created a new block of type: for loop(Clone) : 61,9095
+New block input to console in slot 12 of type for loop(Clone) : 62,44614
+User has created a new block of type: Drive right(Clone) : 65,49172
+New block input to console in slot 16 of type Drive right(Clone) : 66,03912
+User has created a new block of type: for loop(Clone) : 67,8485
+New block input to console in slot 18 of type for loop(Clone) : 68,27152
+User has created a new block of type: Drive down(Clone) : 69,85947
+New block input to console in slot 22 of type Drive down(Clone) : 70,26559
+User has created a new block of type: for loop(Clone) : 71,40151
+New block input to console in slot 24 of type for loop(Clone) : 71,92967
+User has created a new block of type: Drive left(Clone) : 73,61198
+New block input to console in slot 28 of type Drive left(Clone) : 73,99104
+User has created a new block of type: for loop(Clone) : 75,73706
+New block input to console in slot 30 of type for loop(Clone) : 76,14647
+User has created a new block of type: Drive down(Clone) : 80,19675
+New block input to console in slot 34 of type Drive down(Clone) : 80,72083
+Console is run : 81,36621
+User has completed level: level 2 with a score of 240 : 87,9
+User has created a new block of type: for loop(Clone) : 2,626672
+New block input to console in slot 0 of type for loop(Clone) : 3,15786
+User has created a new block of type: Drive right(Clone) : 7,750915
+User has created a new block of type: for loop(Clone) : 10,20999
+User has created a new block of type: Drive right(Clone) : 12,91048
+User deleted a block with the trash can : 14,052
+User has created a new block of type: Drive up(Clone) : 16,1397
+User has created a new block of type: for loop(Clone) : 18,59678
+User has created a new block of type: Drive right(Clone) : 27,45099
+User reset the level: level 1 : 31,41302
+User has created a new block of type: for loop(Clone) : 2,830734
+New block input to console in slot 0 of type for loop(Clone) : 3,519478
+User has created a new block of type: Drive right(Clone) : 6,103717
+New block input to console in slot 4 of type Drive right(Clone) : 7,04868
+User has created a new block of type: for loop(Clone) : 1,703838
+New block input to console in slot 0 of type for loop(Clone) : 2,282477
+User has created a new block of type: Drive right(Clone) : 4,475093
+User has created a new block of type: for loop(Clone) : 12,00527
+User has created a new block of type: Drive right(Clone) : 14,44805

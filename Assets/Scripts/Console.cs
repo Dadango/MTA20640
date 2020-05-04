@@ -30,6 +30,7 @@ public class Console : MonoBehaviour
     private bool running;
     int loopFixer = 0;
     private float timeSinceDrive;
+    public int howManyTimesShouldITakeYourGas;
 
 
     // Start is called before the first frame update
@@ -57,9 +58,11 @@ public class Console : MonoBehaviour
             //slut.slot.GetComponent<Image>().color = Color.black;
             if (slut.method != null) { 
                 if (slut.method.CompareTag("Loop")) {
-                    if (slut.method.GetComponent<DragNDrop>().loopVar.text != "") { 
+                    if (slut.method.GetComponent<DragNDrop>().loopVar.text != "") {
+                        
                         if (int.Parse(slut.method.GetComponent<DragNDrop>().loopVar.text) > 1) {
                             lastEntered.Add(true); //loops are truth
+                            howManyTimesShouldITakeYourGas = int.Parse(slut.method.GetComponent<DragNDrop>().loopVar.text);
                             i += 1;
                             continue;
                         }
@@ -84,23 +87,41 @@ public class Console : MonoBehaviour
                     if (lastEntered[lastEntered.Count - 1] && !lastEntered[lastEntered.Count - 2] || lastEntered[lastEntered.Count - 2] && !lastEntered[lastEntered.Count - 1])
                     {
                         //if inside a loop inside an if or inside an if inside a loop
-                        gasMeter.gasChecker(3);
+                        for(i = 0; i < howManyTimesShouldITakeYourGas; i++) 
+                        { 
+                            gasMeter.gasChecker(3);   
+                        }
+                        howManyTimesShouldITakeYourGas = 0;
                         continue;
                     }
                 }
                 if (lastEntered[lastEntered.Count - 1])
                 {
                     //inside a loop
-                    gasMeter.gasChecker(1);
+                    for (i = 0; i < howManyTimesShouldITakeYourGas; i++)
+                    {
+                        gasMeter.gasChecker(1);
+                    }
+                    howManyTimesShouldITakeYourGas = 0;
                 }
                 else if (!lastEntered[lastEntered.Count - 1])
                 {
                     //inside an if
-                    gasMeter.gasChecker(2);
+                    for (i = 0; i < howManyTimesShouldITakeYourGas; i++)
+                    {
+                        gasMeter.gasChecker(2);
+                    }
+                    howManyTimesShouldITakeYourGas = 0;
                 }
                 else gasMeter.gasChecker(0);
             }
-            else if (slut.method != null) { gasMeter.gasChecker(0); }
+            else if (slut.method != null) {
+                for (i = 0; i < howManyTimesShouldITakeYourGas; i++)
+                {
+                    gasMeter.gasChecker(0);
+                }
+                howManyTimesShouldITakeYourGas = 0;
+            }
         }
     }
 
