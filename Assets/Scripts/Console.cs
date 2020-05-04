@@ -22,7 +22,6 @@ public class Console : MonoBehaviour
     public GameObject slotPrefab;
     public GameObject wmPrefab;
     public gas_meter gasMeter;
-    //public bool debugBtn;
 
     public PlayerMovement playerMovement;
     private Vector2 direction;
@@ -195,10 +194,7 @@ public class Console : MonoBehaviour
 
     private void Update()
     {
-        /*        if (debugBtn) {
-                    debugBtn = false;
-                    updateGas();
-                }*/
+
         if (playerMovement.driving) {
             timeSinceDrive = Time.time;
         }
@@ -229,13 +225,12 @@ public class Console : MonoBehaviour
 
     IEnumerator RunConsole(int number) //TODO - this
     {
+        int emptyCheck = 0;
         int startIndent = number%3;
         for (int i = number; i < slots.Count-(2-startIndent); i += 3) {
             if (loopFixer > 0 && loopFixer > i && startIndent < loopFixer%3) { i = (loopFixer - loopFixer%3) + startIndent; loopFixer = 0; }
             slotValue slot = slots[i];
-            /*if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
-            if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }  //debug colors
-            if (startIndent == 2) { slot.slot.GetComponent<Image>().color = Color.magenta; }*/
+
             if (slot.method != null)
             {
                 DragNDrop blockScript = slot.method.GetComponent<DragNDrop>();
@@ -268,6 +263,7 @@ public class Console : MonoBehaviour
                 }
             }
             else if (startIndent > 0) { print("Method is null! " + "Looking at: " + (i/3) + "," + (i%3) +" : "+ Time.time.ToString()); loopFixer = i; break; }
+            else { emptyCheck++; if (emptyCheck == 50) { Cursor.lockState = CursorLockMode.None; print("You are a fat cunt."); } }
         }
         yield break;
     }
@@ -280,9 +276,7 @@ public class Console : MonoBehaviour
             if (loopFixer > 0 && loopFixer > i && startIndent != loopFixer % 3) { i = (loopFixer - loopFixer % 3) + startIndent; loopFixer = 0; }
 
             slotValue slot = slots[i];
-            /*if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
-            if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }
-            if (startIndent == 2) { slot.slot.GetComponent<Image>().color = Color.magenta; }*/
+
             if (slot.method != null)
             {
                 DragNDrop blockScript = slot.method.GetComponent<DragNDrop>();

@@ -194,7 +194,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: -114.999985, y: 66.000015}
+  m_AnchoredPosition: {x: -114.999985, y: 66}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &70240667
@@ -6073,7 +6073,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 1258152255572902861, guid: 1dc77ffd699abaa408c4515d15547c22,
     type: 3}
-  wmPrefab: {fileID: 0}
+  wmPrefab: {fileID: 6072280877063134830, guid: 9468f0a16a9c14843a6ba1016b09faab,
+    type: 3}
   gasMeter: {fileID: 1714249036}
   playerMovement: {fileID: 678021016}
   howManyTimesShouldITakeYourGas: 0

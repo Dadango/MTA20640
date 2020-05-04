@@ -8128,7 +8128,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   slotPrefab: {fileID: 1258152255572902861, guid: 1dc77ffd699abaa408c4515d15547c22,
     type: 3}
-  wmPrefab: {fileID: 0}
+  wmPrefab: {fileID: 6072280877063134830, guid: 9468f0a16a9c14843a6ba1016b09faab,
+    type: 3}
   gasMeter: {fileID: 1636366612}
   playerMovement: {fileID: 1339261847}
   howManyTimesShouldITakeYourGas: 0
