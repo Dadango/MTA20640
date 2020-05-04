@@ -60,7 +60,7 @@ public class levelWin : MonoBehaviour
 
         playerJson.Add("level", SceneManager.GetActiveScene().name);
 
-        string path = Application.dataPath + "/highscores/PlayerSave" + +totalsaves + ".json";
+        string path = Application.dataPath + totalsaves + ".json";
         Debug.Log("first one" + totalsaves);
         totalsaves++;
         Debug.Log("first 2" + totalsaves);
