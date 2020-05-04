@@ -2,7 +2,7 @@
 using UnityEditor;
 using System.IO;
 
-public class Logger
+public static class Logger
 {
     static float previous = 0;
     static public void writeString(string input) {
