@@ -1,0 +1,7 @@
+User has created a new block of type: for loop(Clone) : Time: 2,004838 Time since last log : 2,004838
+New block input to console in slot 0 of type for loop(Clone) : Time: 2,635306 Time since last log : 0,6304677
+User has created a new block of type: Drive right(Clone) : Time: 4,588387 Time since last log : 1,953081
+New block input to console in slot 4 of type Drive right(Clone) : Time: 5,021831 Time since last log : 0,433444
+Console is run : Time: 5,733623 Time since last log : 0,7117915
+Car stalled : Time: 8,490129 Time since last log : 2,756506
+User reset the level: level 2 : Time: 9,14362 Time since last log : 0,653491
