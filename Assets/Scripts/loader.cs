@@ -21,12 +21,12 @@ public class loader : MonoBehaviour
     {
         Array.Sort(highscores);
         Array.Reverse(highscores);
-        firstPlace.text = "1. " + highscores[0].getName() + " " + highscores[0].getScore();
-        secondPlace.text = "2. " + highscores[1].getName() + " " + highscores[1].getScore();
-        thirdPlace.text = "3. " + highscores[2].getName() + " " + highscores[2].getScore();
-        fourthPlace.text = "4. " + highscores[3].getName() + " " + highscores[3].getScore();
-        fifthPlace.text = "5. " + highscores[4].getName() + " " + highscores[4].getScore();
-        sixthPlace.text = "6. " + highscores[5].getName() + " " + highscores[5].getScore();
+        firstPlace.text = "1. " + highscores[0].getName() + "        " + highscores[0].getScore();
+        secondPlace.text = "2. " + highscores[1].getName() + "        " + highscores[1].getScore();
+        thirdPlace.text = "3. " + highscores[2].getName() + "        " + highscores[2].getScore();
+        fourthPlace.text = "4. " + highscores[3].getName() + "        " + highscores[3].getScore();
+        fifthPlace.text = "5. " + highscores[4].getName() + "        " + highscores[4].getScore();
+        sixthPlace.text = "6. " + highscores[5].getName() + "        " + highscores[5].getScore();
     }
 
     Highscore[] Load()
