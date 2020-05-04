@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Sprite car;
-    Vector2 startPos;
+    Transform startPos;
     public bool driving;
     public bool carStalled;
 
@@ -215,14 +215,15 @@ public class PlayerMovement : MonoBehaviour
         Animator anim = gameObject.GetComponent<Animator>();
         anim.enabled = false; //this is pure laziness to avoid the state machine
         gameObject.GetComponent<SpriteRenderer>().sprite = car;
-        transform.position = startPos;
+        transform.position = startPos.position;
+        transform.rotation = startPos.rotation;
         driving = false;
         Cursor.lockState = CursorLockMode.None;
     }
 
     private void Start()
     {
-        startPos = transform.position;
+        startPos = transform;
     }
 
     // Update is called once per frame
