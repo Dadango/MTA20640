@@ -51,25 +51,30 @@ public class Console : MonoBehaviour
     void updateGas()
     {
         gasMeter.gasReset();
-        List<bool> lastEntered = new List<bool>(); //since we have only two states (loop or if) bool is most efficient, albeit slightly less readable
+        List<int> lastEntered = new List<int>(); //since we have only two states (loop or if) bool is most efficient, albeit slightly less readable
         for (int i = 0; i < slots.Count - (i % 3); i += 3)
         {
             slotValue slut = slots[i];
             //slut.slot.GetComponent<Image>().color = Color.black;
-            if (slut.method != null) { 
-                if (slut.method.CompareTag("Loop")) {
-                    if (slut.method.GetComponent<DragNDrop>().loopVar.text != "") {
-                        
-                        if (int.Parse(slut.method.GetComponent<DragNDrop>().loopVar.text) > 1) {
-                            lastEntered.Add(true); //loops are truth
-                            howManyTimesShouldITakeYourGas = int.Parse(slut.method.GetComponent<DragNDrop>().loopVar.text);
+            if (slut.method != null)
+            {
+                if (slut.method.CompareTag("Loop"))
+                {
+                    if (slut.method.GetComponent<DragNDrop>().loopVar.text != "")
+                    {
+                        int howManyTimesShouldITakeYourGas = int.Parse(slut.method.GetComponent<DragNDrop>().loopVar.text);
+                        if (howManyTimesShouldITakeYourGas > 1)
+                        {
+                            lastEntered.Add(howManyTimesShouldITakeYourGas); //loops are truth
+
                             i += 1;
                             continue;
                         }
                     }
                 }
-                if ((slut.method.CompareTag("IfStatement"))) {
-                    lastEntered.Add(false); //conditionals are false
+                if ((slut.method.CompareTag("IfStatement")))
+                {
+                    lastEntered.Add(0); //conditionals are false
                     i += 1;
                     continue;
                 }
@@ -84,46 +89,56 @@ public class Console : MonoBehaviour
                 }
                 if (lastEntered.Count > 1)
                 {
-                    if (lastEntered[lastEntered.Count - 1] && !lastEntered[lastEntered.Count - 2] || lastEntered[lastEntered.Count - 2] && !lastEntered[lastEntered.Count - 1])
+                    if (lastEntered[lastEntered.Count - 1] == 0 && lastEntered[lastEntered.Count - 2] > 0)
                     {
-                        //if inside a loop inside an if or inside an if inside a loop
-                        for(i = 0; i < howManyTimesShouldITakeYourGas; i++) 
-                        { 
-                            gasMeter.gasChecker(3);   
+                        //if inside a loop inside an if
+                        for (int j = 0; j < lastEntered[lastEntered.Count - 2]; j++)
+                        {
+                            gasMeter.gasChecker(3);
                         }
-                        howManyTimesShouldITakeYourGas = 0;
-                        continue;
+
                     }
+                    else if (lastEntered[lastEntered.Count - 2] == 0 && lastEntered[lastEntered.Count - 1] > 0)
+                    //inside an if inside a loop
+                    {
+                        for (int j = 0; j < lastEntered[lastEntered.Count - 1]; j++)
+                        {
+                            gasMeter.gasChecker(3);
+                        }
+
+                    }
+                    else if (lastEntered[lastEntered.Count - 1] > 0 && lastEntered[lastEntered.Count - 2] > 0)
+                    //Loop inside loop (nested loops!)
+                    {
+                        for (int j = 0; j < lastEntered[lastEntered.Count - 1] * lastEntered[lastEntered.Count - 2]; j++)
+                        {
+                            gasMeter.gasChecker(1);
+                        }
+                    }
+                    continue;
                 }
-                if (lastEntered[lastEntered.Count - 1])
+                if (lastEntered[lastEntered.Count - 1] > 0)
                 {
                     //inside a loop
-                    for (i = 0; i < howManyTimesShouldITakeYourGas; i++)
+                    for (int j = 0; j < lastEntered[lastEntered.Count - 1]; j++)
                     {
                         gasMeter.gasChecker(1);
                     }
-                    howManyTimesShouldITakeYourGas = 0;
                 }
-                else if (!lastEntered[lastEntered.Count - 1])
+                else if (lastEntered[lastEntered.Count - 1] == 0)
                 {
                     //inside an if
-                    for (i = 0; i < howManyTimesShouldITakeYourGas; i++)
-                    {
-                        gasMeter.gasChecker(2);
-                    }
-                    howManyTimesShouldITakeYourGas = 0;
+                    gasMeter.gasChecker(2);
                 }
                 else gasMeter.gasChecker(0);
             }
-            else if (slut.method != null) {
-                for (i = 0; i < howManyTimesShouldITakeYourGas; i++)
-                {
-                    gasMeter.gasChecker(0);
-                }
-                howManyTimesShouldITakeYourGas = 0;
+            else if (slut.method != null)
+            {
+                gasMeter.gasChecker(0);
             }
         }
     }
+
 
     public void OnBlockRecieved(GameObject block) { //if loop placed : add new indented blocks
         block.transform.SetParent(transform);
@@ -264,9 +279,9 @@ public class Console : MonoBehaviour
             if (loopFixer > 0 && loopFixer > i && startIndent != loopFixer % 3) { i = (loopFixer - loopFixer % 3) + startIndent; loopFixer = 0; }
 
             slotValue slot = slots[i];
-            if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
+            /*if (startIndent == 0) { slot.slot.GetComponent<Image>().color = Color.red; }
             if (startIndent == 1) { slot.slot.GetComponent<Image>().color = Color.blue; }
-            if (startIndent == 2) { slot.slot.GetComponent<Image>().color = Color.magenta; }
+            if (startIndent == 2) { slot.slot.GetComponent<Image>().color = Color.magenta; }*/
             if (slot.method != null)
             {
                 DragNDrop blockScript = slot.method.GetComponent<DragNDrop>();
@@ -299,17 +314,17 @@ public class Console : MonoBehaviour
         int thot = (int)playerMovement.transform.eulerAngles.z;
         switch (thot)
         {
-            case 90:
-                direction = new Vector2(0, 1);
-                break;
             case 0:
                 direction = new Vector2(1, 0);
                 break;
-            case -90:
-                direction = new Vector2(0, -1);
+            case 90:
+                direction = new Vector2(0, 1);
                 break;
             case 180:
                 direction = new Vector2(-1, 0);
+                break;
+            case 270:
+                direction = new Vector2(0, -1);
                 break;
             default:
                 direction = new Vector2(0, 0);
