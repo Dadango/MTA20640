@@ -8,25 +8,20 @@ using System;
 
 public class loader : MonoBehaviour
 {
-    public TextMeshProUGUI firstPlace;
-    public TextMeshProUGUI secondPlace;
-    public TextMeshProUGUI thirdPlace;
-    public TextMeshProUGUI fourthPlace;
-    public TextMeshProUGUI fifthPlace;
-    public TextMeshProUGUI sixthPlace;
+    public GameObject placements;
+    public GameObject scores;
     static private int totalloader = 0;
-
 
     void leaderboard(Highscore[] highscores)
     {
         Array.Sort(highscores);
-        Array.Reverse(highscores);
-        firstPlace.text = "1. " + highscores[0].getName() + "        " + highscores[0].getScore();
-        secondPlace.text = "2. " + highscores[1].getName() + "        " + highscores[1].getScore();
-        thirdPlace.text = "3. " + highscores[2].getName() + "        " + highscores[2].getScore();
-        fourthPlace.text = "4. " + highscores[3].getName() + "        " + highscores[3].getScore();
-        fifthPlace.text = "5. " + highscores[4].getName() + "        " + highscores[4].getScore();
-        sixthPlace.text = "6. " + highscores[5].getName() + "        " + highscores[5].getScore();
+        //Array.Reverse(highscores);
+        TextMeshProUGUI[] places = placements.GetComponentsInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI[] numbers = scores.GetComponentsInChildren<TextMeshProUGUI>();
+        for (int i = 0; i < places.Length; i++) {
+            places[i].text = i + 1 + ". " + highscores[i].getName();
+            numbers[i].text = highscores[i].getScore() + "";
+        }
     }
 
     Highscore[] Load()

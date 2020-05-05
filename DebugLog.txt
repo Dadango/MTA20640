@@ -1,0 +1,51 @@
+User has created a new block of type: for loop(Clone) : Time: 1.922272 Time since last log : 1.922272
+New block input to console in slot 0 of type for loop(Clone) : Time: 2.81818 Time since last log : 0.8959079
+Block removed from slot 0 of type for loop(Clone) : Time: 5.166145 Time since last log : 2.347965
+User has created a new block of type: Drive up(Clone) : Time: 1.937802 Time since last log : 1.937802
+New block input to console in slot 0 of type Drive up(Clone) : Time: 3.009954 Time since last log : 1.072152
+Console is run : Time: 5.09001 Time since last log : 2.080056
+Car hit a building : Time: 5.16 Time since last log : 0.06999016
+User has created a new block of type: for loop(Clone) : Time: 1.434159 Time since last log : 1.434159
+New block input to console in slot 0 of type for loop(Clone) : Time: 5.144949 Time since last log : 3.71079
+User has created a new block of type: Drive right(Clone) : Time: 6.670547 Time since last log : 1.525598
+New block input to console in slot 4 of type Drive right(Clone) : Time: 7.440328 Time since last log : 0.7697806
+User has created a new block of type: for loop(Clone) : Time: 8.731075 Time since last log : 1.290748
+New block input to console in slot 6 of type for loop(Clone) : Time: 12.32917 Time since last log : 3.598095
+User has created a new block of type: Drive up(Clone) : Time: 14.02294 Time since last log : 1.693766
+New block input to console in slot 10 of type Drive up(Clone) : Time: 14.61717 Time since last log : 0.5942354
+User has created a new block of type: for loop(Clone) : Time: 16.03241 Time since last log : 1.41524
+New block input to console in slot 12 of type for loop(Clone) : Time: 19.1038 Time since last log : 3.07139
+User has created a new block of type: Drive right(Clone) : Time: 20.90641 Time since last log : 1.802612
+New block input to console in slot 16 of type Drive right(Clone) : Time: 21.5422 Time since last log : 0.635788
+User has created a new block of type: for loop(Clone) : Time: 22.82388 Time since last log : 1.281683
+New block input to console in slot 18 of type for loop(Clone) : Time: 25.98267 Time since last log : 3.158781
+User has created a new block of type: Drive down(Clone) : Time: 29.88492 Time since last log : 3.902254
+New block input to console in slot 22 of type Drive down(Clone) : Time: 30.63148 Time since last log : 0.7465611
+User has created a new block of type: for loop(Clone) : Time: 32.88438 Time since last log : 2.252903
+New block input to console in slot 24 of type for loop(Clone) : Time: 37.00307 Time since last log : 4.118687
+User has created a new block of type: Drive right(Clone) : Time: 38.81807 Time since last log : 1.814995
+New block input to console in slot 28 of type Drive right(Clone) : Time: 39.40461 Time since last log : 0.5865479
+Console is run : Time: 39.98923 Time since last log : 0.5846214
+User has completed level: level 1 with a score of 150/n : Time: 43.56 Time since last log : 3.570763
+User has created a new block of type: for loop(Clone) : Time: 1.276401 Time since last log : 1.276401
+New block input to console in slot 0 of type for loop(Clone) : Time: 5.172742 Time since last log : 3.896341
+User has created a new block of type: Drive right(Clone) : Time: 6.745647 Time since last log : 1.572905
+New block input to console in slot 4 of type Drive right(Clone) : Time: 7.524884 Time since last log : 0.7792373
+User has created a new block of type: for loop(Clone) : Time: 9.040584 Time since last log : 1.515699
+New block input to console in slot 6 of type for loop(Clone) : Time: 10.9987 Time since last log : 1.958114
+User has created a new block of type: Drive up(Clone) : Time: 12.6304 Time since last log : 1.631703
+New block input to console in slot 10 of type Drive up(Clone) : Time: 13.33694 Time since last log : 0.706542
+User has created a new block of type: for loop(Clone) : Time: 14.7056 Time since last log : 1.368655
+New block input to console in slot 12 of type for loop(Clone) : Time: 17.8251 Time since last log : 3.119506
+User has created a new block of type: Drive right(Clone) : Time: 19.6474 Time since last log : 1.822292
+New block input to console in slot 16 of type Drive right(Clone) : Time: 20.21691 Time since last log : 0.5695095
+User has created a new block of type: for loop(Clone) : Time: 21.49993 Time since last log : 1.28302
+New block input to console in slot 18 of type for loop(Clone) : Time: 24.11915 Time since last log : 2.619228
+User has created a new block of type: Drive down(Clone) : Time: 25.53838 Time since last log : 1.41923
+New block input to console in slot 22 of type Drive down(Clone) : Time: 26.12804 Time since last log : 0.589653
+User has created a new block of type: for loop(Clone) : Time: 27.90338 Time since last log : 1.775343
+New block input to console in slot 24 of type for loop(Clone) : Time: 31.49923 Time since last log : 3.595848
+User has created a new block of type: Drive right(Clone) : Time: 32.75438 Time since last log : 1.255156
+New block input to console in slot 28 of type Drive right(Clone) : Time: 33.42009 Time since last log : 0.6657028
+Console is run : Time: 34.07742 Time since last log : 0.6573372
+User has completed level: level 1 with a score of 160/n : Time: 37.64 Time since last log : 3.562576

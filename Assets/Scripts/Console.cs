@@ -45,6 +45,7 @@ public class Console : MonoBehaviour
                 if (j != -1.8f) { slot.SetActive(false); }
             }
         }
+        updateGas();
     }
 
     void updateGas()
@@ -205,19 +206,19 @@ public class Console : MonoBehaviour
         }
         if (button_run.runButtonPH) {
             button_run.runButtonPH = false;
-            if (gasMeter.gas >= 0)
-            {
-                loopFixer = -1;
-                print("Starting console...");
-                Logger.writeString("Console is run");
-                Cursor.lockState = CursorLockMode.Locked;
-                StartCoroutine("RunConsole", 0);
-            }
+            //if (gasMeter.gas >= 0)
+            //{
+            loopFixer = -1;
+            print("Starting console...");
+            Logger.writeString("Console is run");
+            Cursor.lockState = CursorLockMode.Locked;
+            StartCoroutine("RunConsole", 0);
+            /*}
             else {
                 GameObject wm = Instantiate(wmPrefab, transform.parent.parent); //show error message
                 Destroy(wm, 3);
                 Logger.writeString("User attempted execution of console without sufficient gas");
-            }
+            }*/
         }
     }
 
