@@ -249,7 +249,9 @@ public class Console : MonoBehaviour
                 else if (slot.method.CompareTag("Loop"))
                 {
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
-                    for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++)
+                    string loopTimes = "";
+                    loopTimes = blockScript.loopVar.text == ""? "1" : blockScript.loopVar.text;
+                    for (int j = 0; j < int.Parse(loopTimes); j++)
                     {
                         print("loop entered. Starting new console at row: " + ((i + 3) / 3) + " and " + (startIndent + 1) + " : " + Time.time.ToString());
                         yield return StartCoroutine("RunConsole", (i + 3 + 1));
@@ -288,7 +290,9 @@ public class Console : MonoBehaviour
                 else if (slot.method.CompareTag("Loop"))
                 {
                     if (startIndent > 1) { break; } //don't allow nesting within nesting!
-                    for (int j = 0; j < int.Parse(blockScript.loopVar.text); j++)
+                    string loopTimes = "";
+                    loopTimes = blockScript.loopVar.text == "" ? "1" : blockScript.loopVar.text;
+                    for (int j = 0; j < int.Parse(loopTimes); j++)
                     {
                         yield return StartCoroutine("WhatIfRunConsole", (i + 3 + 1));
                     }
