@@ -44,11 +44,11 @@ public class levelWin : MonoBehaviour
         JSONObject playerJson = new JSONObject();
         List<Highscore> highscores = new List<Highscore>();
         highscores.Add(new Highscore("YOU", gas));
-        highscores.Add(new Highscore("ABC", 150));
-        highscores.Add(new Highscore("ABE", 160));
-        highscores.Add(new Highscore("DCE", 170));
-        highscores.Add(new Highscore("FGE", 180));
-        highscores.Add(new Highscore("XXX", 190));
+        highscores.Add(new Highscore("ABC", 50));
+        highscores.Add(new Highscore("ABE", 60));
+        highscores.Add(new Highscore("DCE", 70));
+        highscores.Add(new Highscore("FGE", 80));
+        highscores.Add(new Highscore("XXX", 90));
 
         int i = 0;
         foreach (Highscore h in highscores)
