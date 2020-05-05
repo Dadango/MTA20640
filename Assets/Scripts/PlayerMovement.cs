@@ -5,7 +5,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Sprite car;
-    Transform startPos;
+    Vector3 startPos;
+    Quaternion startRot;
     public bool driving;
     public bool carStalled;
 
@@ -96,10 +97,11 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator DriveRight() {
+    IEnumerator DriveRight()
+    {
         driving = true;
         carStalled = true;
-    Vector3 currentPos = transform.position;
+        Vector3 currentPos = transform.position;
         Vector3 destinationForward = currentPos + new Vector3(1.0f, 0.0f);
         while (true)
         {
@@ -145,7 +147,8 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator DriveUp() {
+    IEnumerator DriveUp()
+    {
         driving = true;
         carStalled = true;
         Vector3 currentPos = transform.position;
@@ -169,7 +172,8 @@ public class PlayerMovement : MonoBehaviour
         yield return null;
     }
 
-    IEnumerator DriveDown() {
+    IEnumerator DriveDown()
+    {
         driving = true;
         carStalled = true;
         Vector3 currentPos = transform.position;
@@ -211,19 +215,21 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    public void CarDedLul() {
+    public void CarDedLul()
+    {
         Animator anim = gameObject.GetComponent<Animator>();
         anim.enabled = false; //this is pure laziness to avoid the state machine
         gameObject.GetComponent<SpriteRenderer>().sprite = car;
-        transform.position = startPos.position;
-        transform.rotation = startPos.rotation;
+        transform.position = startPos;
+        transform.rotation = startRot;
         driving = false;
         Cursor.lockState = CursorLockMode.None;
     }
 
     private void Start()
     {
-        startPos = transform;
+        startPos = transform.position;
+        startRot = transform.rotation;
     }
 
     // Update is called once per frame
