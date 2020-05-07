@@ -21,7 +21,7 @@ public class loader : MonoBehaviour
     {
         Array.Sort(highscores);
         Array.Reverse(highscores);
-        firstPlace.text = "1. " + highscores[0].getName() + "        " + highscores[0].getScore();
+        firstPlace.text = "1. " + highscores[0].getName() + "       " + highscores[0].getScore();
         secondPlace.text = "2. " + highscores[1].getName() + "        " + highscores[1].getScore();
         thirdPlace.text = "3. " + highscores[2].getName() + "        " + highscores[2].getScore();
         fourthPlace.text = "4. " + highscores[3].getName() + "        " + highscores[3].getScore();

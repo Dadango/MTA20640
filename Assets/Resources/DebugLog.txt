@@ -1,0 +1,12 @@
+User has created a new block of type: for loop(Clone) : Time: 2,676911 Time since last log : 2,676911
+New block input to console in slot 0 of type for loop(Clone) : Time: 3,35224 Time since last log : 0,675329
+User has created a new block of type: Drive right(Clone) : Time: 5,235898 Time since last log : 1,883658
+New block input to console in slot 4 of type Drive right(Clone) : Time: 5,796451 Time since last log : 0,5605521
+Console is run : Time: 6,560544 Time since last log : 0,7640934
+Car stalled : Time: 9,31258 Time since last log : 2,752036
+User has created a new block of type: for loop(Clone) : Time: 2,178933 Time since last log : 2,178933
+New block input to console in slot 0 of type for loop(Clone) : Time: 2,664749 Time since last log : 0,4858162
+User has created a new block of type: Drive right(Clone) : Time: 4,176363 Time since last log : 1,511615
+New block input to console in slot 4 of type Drive right(Clone) : Time: 4,578042 Time since last log : 0,4016781
+Console is run : Time: 5,155042 Time since last log : 0,5770001
+Car stalled : Time: 7,902605 Time since last log : 2,747563
