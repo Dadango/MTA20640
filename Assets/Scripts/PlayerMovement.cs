@@ -9,93 +9,8 @@ public class PlayerMovement : MonoBehaviour
     Quaternion startRot;
     public bool driving;
     public bool carStalled;
-
     public float smoothTime;
-    Vector3 velocity = Vector3.zero;
 
-    IEnumerator Move()
-    {
-        driving = true;
-        if (Input.GetKeyDown("right"))
-        {
-            Vector3 currentPos = transform.position;
-            Vector3 destinationForward = currentPos + new Vector3(1.0f, 0.0f);
-            while (true)
-            {
-                yield return new WaitForEndOfFrame();
-                transform.position = Vector3.SmoothDamp(transform.position, destinationForward, ref velocity, smoothTime);
-                if (transform.eulerAngles.z != 0)
-                {
-                    transform.eulerAngles = new Vector3(0.0f, 0.0f, 0.0f);
-                }
-                if (Mathf.Abs(transform.position.magnitude - destinationForward.magnitude) < 0.02f)
-                {
-                    transform.position = destinationForward;
-                    break;
-                }
-            }
-        }
-        else if (Input.GetKeyDown("left"))
-        {
-            Vector3 currentPos = transform.position;
-            Vector3 destinationBackward = currentPos + new Vector3(-1.0f, 0.0f);
-            while (true)
-            {
-                yield return new WaitForEndOfFrame();
-                transform.position = Vector3.SmoothDamp(transform.position, destinationBackward, ref velocity, smoothTime);
-                if (transform.eulerAngles.z != 180.0f)
-                {
-                    transform.eulerAngles = new Vector3(0.0f, 0.0f, 180.0f);
-                }
-                if (Mathf.Abs(transform.position.magnitude - destinationBackward.magnitude) < 0.02f)
-                {
-                    transform.position = destinationBackward;
-                    break;
-                }
-            }
-        }
-        else if (Input.GetKeyDown("up"))
-        {
-            Vector3 currentPos = transform.position;
-            Vector3 destinationLeft = currentPos + new Vector3(0.0f, 1.0f);
-            if (transform.eulerAngles.z != 90.0f)
-            {
-                transform.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
-            }
-            while (true)
-            {
-                yield return new WaitForEndOfFrame();
-                transform.position = Vector3.SmoothDamp(transform.position, destinationLeft, ref velocity, smoothTime);
-                if (Mathf.Abs(transform.position.magnitude - destinationLeft.magnitude) < 0.02f)
-                {
-                    transform.position = destinationLeft;
-                    break;
-                }
-            }
-        }
-        else if (Input.GetKeyDown("down"))
-        {
-            Vector3 currentPos = transform.position;
-            Vector3 destinationRight = currentPos + new Vector3(0.0f, -1.0f);
-            if (transform.eulerAngles.z != -90.0f)
-            {
-                transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
-            }
-            while (true)
-            {
-                yield return new WaitForEndOfFrame();
-                transform.position = Vector3.SmoothDamp(transform.position, destinationRight, ref velocity, smoothTime);
-                if (Mathf.Abs(transform.position.magnitude - destinationRight.magnitude) < 0.02f)
-                {
-                    transform.position = destinationRight;
-                    break;
-                }
-            }
-
-        }
-        driving = false;
-        yield return null;
-    }
 
     IEnumerator DriveRight()
     {
@@ -103,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
         carStalled = true;
         Vector3 currentPos = transform.position;
         Vector3 destinationForward = currentPos + new Vector3(1.0f, 0.0f);
+        Vector3 velocity = Vector3.zero;
         while (true)
         {
             yield return new WaitForEndOfFrame();
@@ -128,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
         carStalled = true;
         Vector3 currentPos = transform.position;
         Vector3 destinationBackward = currentPos + new Vector3(-1.0f, 0.0f);
+        Vector3 velocity = Vector3.zero;
         while (true)
         {
             yield return new WaitForEndOfFrame();
@@ -153,6 +70,7 @@ public class PlayerMovement : MonoBehaviour
         carStalled = true;
         Vector3 currentPos = transform.position;
         Vector3 destinationLeft = currentPos + new Vector3(0.0f, 1.0f);
+        Vector3 velocity = Vector3.zero;
         if (transform.eulerAngles.z != 90.0f)
         {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, 90.0f);
@@ -178,6 +96,7 @@ public class PlayerMovement : MonoBehaviour
         carStalled = true;
         Vector3 currentPos = transform.position;
         Vector3 destinationRight = currentPos + new Vector3(0.0f, -1.0f);
+        Vector3 velocity = Vector3.zero;
         if (transform.eulerAngles.z != -90.0f)
         {
             transform.eulerAngles = new Vector3(0.0f, 0.0f, -90.0f);
@@ -232,12 +151,4 @@ public class PlayerMovement : MonoBehaviour
         startRot = transform.rotation;
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        /*if ((Input.GetKeyDown("down") || Input.GetKeyDown("up") || Input.GetKeyDown("right") || Input.GetKeyDown("left")) && driving == false)
-        {
-            StartCoroutine(Move());
-        }*/
-    }
 }
