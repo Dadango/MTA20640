@@ -8712,8 +8712,6 @@ MonoBehaviour:
       m_Image: {fileID: 0}
     - m_Text: If roadblock ahead
       m_Image: {fileID: 0}
-    - m_Text: If end of road
-      m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:

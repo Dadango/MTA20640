@@ -3173,7 +3173,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -116.99993, y: -1.0000119}
+  m_AnchoredPosition: {x: -116.99994, y: -1.0000119}
   m_SizeDelta: {x: 230, y: 650}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &629880590
@@ -7568,8 +7568,6 @@ MonoBehaviour:
     - m_Text: If building ahead
       m_Image: {fileID: 0}
     - m_Text: If roadblock ahead
-      m_Image: {fileID: 0}
-    - m_Text: If end of road
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
