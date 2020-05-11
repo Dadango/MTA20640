@@ -90,7 +90,7 @@ public class Console : MonoBehaviour
                 {
                     if (lastEntered[lastEntered.Count - 1] == 0 && lastEntered[lastEntered.Count - 2] > 0)
                     {
-                        //if inside a loop inside an if
+                        //inside an if inside a loop
                         for (int j = 0; j < lastEntered[lastEntered.Count - 2]; j++)
                         {
                             gasMeter.gasChecker(3);
@@ -98,7 +98,7 @@ public class Console : MonoBehaviour
 
                     }
                     else if (lastEntered[lastEntered.Count - 2] == 0 && lastEntered[lastEntered.Count - 1] > 0)
-                    //inside an if inside a loop
+                    //if inside a loop inside an if
                     {
                         for (int j = 0; j < lastEntered[lastEntered.Count - 1]; j++)
                         {
