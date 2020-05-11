@@ -74,5 +74,7 @@ public class DragNDrop : MonoBehaviour
         if (hoveredSlot == collision) { hoveredSlot = null; }
         trasher = false;
     }
-
+    void callGasUpdateFromConsole() {
+        GameObject.FindGameObjectWithTag("GameController").GetComponent<Console>().BroadcastMessage("updateGas");
+    }
 }

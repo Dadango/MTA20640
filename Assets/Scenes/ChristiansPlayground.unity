@@ -4673,6 +4673,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   car: {fileID: 21300000, guid: 3b63fc727f0b7e946924ee0c8a776492, type: 3}
   driving: 0
+  carStalled: 0
   smoothTime: 0.1
 --- !u!61 &1533395054
 BoxCollider2D:
@@ -4980,7 +4981,7 @@ GameObject:
   - component: {fileID: 1767675133}
   m_Layer: 0
   m_Name: Console
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5022,6 +5023,7 @@ MonoBehaviour:
     type: 3}
   gasMeter: {fileID: 2097968105}
   playerMovement: {fileID: 1533395053}
+  howManyTimesShouldITakeYourGas: 0
 --- !u!1 &1806750226
 GameObject:
   m_ObjectHideFlags: 0
