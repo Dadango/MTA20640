@@ -132,3 +132,4 @@ Block removed from slot 27 of type Drive right(Clone) : Time: 24,23824 Time sinc
 New block input to console in slot 28 of type Drive right(Clone) : Time: 24,42701 Time since last log : 0,1887684
 Console is run : Time: 24,77826 Time since last log : 0,3512573
 User has completed level: level 1 with a score of 130/n : Time: 28,36 Time since last log : 3,581734
+User has created a new block of type: roadblock(Clone) : Time: 2,299846 Time since last log : 2,299846
