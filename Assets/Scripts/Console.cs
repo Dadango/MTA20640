@@ -65,7 +65,7 @@ public class Console : MonoBehaviour
                         int howManyTimesShouldITakeYourGas = int.Parse(slut.method.GetComponent<DragNDrop>().loopVar.text);
                         if (howManyTimesShouldITakeYourGas > 1)
                         {
-                            lastEntered.Add(howManyTimesShouldITakeYourGas); //loops are truth
+                            lastEntered.Add(howManyTimesShouldITakeYourGas); //loops are whatever number of iterations they require
 
                             i += 1;
                             continue;
@@ -74,7 +74,7 @@ public class Console : MonoBehaviour
                 }
                 if ((slut.method.CompareTag("IfStatement")))
                 {
-                    lastEntered.Add(0); //conditionals are false
+                    lastEntered.Add(0); //conditionals are 0
                     i += 1;
                     continue;
                 }
@@ -91,18 +91,20 @@ public class Console : MonoBehaviour
                 {
                     if (lastEntered[lastEntered.Count - 1] == 0 && lastEntered[lastEntered.Count - 2] > 0)
                     {
-                        //if inside a loop inside an if
+                        //inside an if inside a loop
                         for (int j = 0; j < lastEntered[lastEntered.Count - 2]; j++)
                         {
+                            print("loop inside an if");
                             gasMeter.gasChecker(3);
                         }
 
                     }
                     else if (lastEntered[lastEntered.Count - 2] == 0 && lastEntered[lastEntered.Count - 1] > 0)
-                    //inside an if inside a loop
+                    //if inside a loop inside an if
                     {
                         for (int j = 0; j < lastEntered[lastEntered.Count - 1]; j++)
                         {
+                            print("if inside a loop");
                             gasMeter.gasChecker(3);
                         }
 
