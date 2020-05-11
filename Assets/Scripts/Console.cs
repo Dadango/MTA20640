@@ -94,7 +94,6 @@ public class Console : MonoBehaviour
                         //inside an if inside a loop
                         for (int j = 0; j < lastEntered[lastEntered.Count - 2]; j++)
                         {
-                            print("loop inside an if");
                             gasMeter.gasChecker(3);
                         }
 
@@ -104,7 +103,6 @@ public class Console : MonoBehaviour
                     {
                         for (int j = 0; j < lastEntered[lastEntered.Count - 1]; j++)
                         {
-                            print("if inside a loop");
                             gasMeter.gasChecker(3);
                         }
 
