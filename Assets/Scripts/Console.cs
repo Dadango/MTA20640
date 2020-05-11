@@ -64,7 +64,7 @@ public class Console : MonoBehaviour
                         int howManyTimesShouldITakeYourGas = int.Parse(slut.method.GetComponent<DragNDrop>().loopVar.text);
                         if (howManyTimesShouldITakeYourGas > 1)
                         {
-                            lastEntered.Add(howManyTimesShouldITakeYourGas); //loops are truth
+                            lastEntered.Add(howManyTimesShouldITakeYourGas); //loops are whatever the iterations they require
 
                             i += 1;
                             continue;
@@ -73,7 +73,7 @@ public class Console : MonoBehaviour
                 }
                 if ((slut.method.CompareTag("IfStatement")))
                 {
-                    lastEntered.Add(0); //conditionals are false
+                    lastEntered.Add(0); //conditionals are 0
                     i += 1;
                     continue;
                 }
